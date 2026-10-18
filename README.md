@@ -7,7 +7,7 @@
 - Kaiky hamada RGM: 47210486
 - Lucas Pereira Andre RGM: 46614397
 - Paulo Renato sobral da Silva RGM: 46763902
-- Ricardo Arakaki RGM: 46786619
+- Ricardo Naoto Arakaki RGM: 46786619
 
 ---
 ## 1. Caracterização da Organização 
