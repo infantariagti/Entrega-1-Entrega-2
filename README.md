@@ -56,23 +56,27 @@
 
 ### 3.1 Requisitos Funcionais (RF)
 
-RF01 - Cadastro de Clientes: Registrar, editar e consultar dados de clientes (nome, telefone/WhatsApp, CPF e endereço).
+RF01 - Cadastro de Clientes: Cadastrar os clientes associando-as a uma moto (nome, telefone/WhatsApp, CPF e endereço).
 	
 RF02 - Cadastro de Veículos (Motos): Cadastrar as motos associando-as a um cliente específico (placa, modelo, marca, ano, cor e quilometragem de entrada).
 	
 RF03 - Abertura e Gestão de Ordem de Serviço (OS): Criar e atualizar a OS contendo data de entrada, defeito relatado, diagnóstico do mecânico, status (Ex: Aguardando Aprovação, Em Manutenção, Pronta, Entregue) e previsão de entrega.
 
-RF04 - Cadastro de Peças e Controle de Estoque: Registrar peças (nome, código/referência, valor de custo, valor de venda e quantidade em estoque), reduzindo o saldo automaticamente ao fechar uma OS.
+RF04 - Recebimento de Peças, Controle de Estoque e Garantia: Registrar o recebimento de peças (peça, quantidade e valor de custo), somando a quantidade ao saldo em estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS.
 
-RF05 - Lançamento de Serviços (Mão de Obra): Cadastrar e vincular os serviços prestados (ex: troca de óleo, revisão geral, troca de relação) com seus respectivos valores à OS.
+RF05 - Cadastro de Peças e Controle de Estoque: Registrar peças (nome, código/referência, valor de custo, valor de venda e quantidade em estoque), reduzindo o saldo automaticamente ao fechar uma OS.
 
-RF06 - Geração de Orçamento: Calcular o valor total (peças + mão de obra) e permitir a visualização/impressão do orçamento formatado para validação com o cliente.
+RF06 - Lançamento de Serviços (Mão de Obra): Cadastrar e vincular os serviços prestados (ex: troca de óleo, revisão geral, troca de relação) com seus respectivos valores à OS.
 
-RF07 - Registro de Pagamentos: Registrar a forma de pagamento (Pix, dinheiro, cartão de crédito/débito) e alterar o status financeiro da OS para Pago.
+RF07 - Geração de Orçamento: Calcular o valor total (peças + mão de obra) e permitir a visualização/impressão do orçamento formatado para validação com o cliente.
 
-RF08 - Histórico de Manutenções: Permitir a busca do histórico completo de OS de uma determinada moto por placa ou cliente, facilitando diagnósticos futuros pelo mecânico.
+RF08 - Registro de Pagamentos: Registrar a forma de pagamento (Pix, dinheiro, cartão de crédito/débito) e alterar o status financeiro da OS para Pago.
 
-RF09 - Alerta de Estoque Mínimo: Exibir aviso quando itens de alto giro (óleo, pastilhas de freio, velas) atingirem a quantidade mínima cadastrada.
+RF09 - Histórico de Manutenções: Permitir a busca do histórico completo de OS de uma determinada moto por placa ou cliente, facilitando diagnósticos futuros pelo mecânico.
+
+RF10 - Alerta de Estoque Mínimo: Exibir aviso quando itens de alto giro (óleo, pastilhas de freio, velas) atingirem a quantidade mínima cadastrada.
+
+RF11 - Contas a Pagar (melhoria): Registrar as compras de peças e insumos/consumíveis (óleo, graxa, velas etc.) utilizados nos serviços da oficina, informando descrição, valor, data da compra, data de vencimento e situação (Pendente ou Pago), permitindo consultar os valores a pagar e os já quitados.
 
 ### 3. Requisitos Não-Funcionais (RNF)
 
