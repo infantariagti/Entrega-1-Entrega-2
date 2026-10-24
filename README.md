@@ -312,7 +312,7 @@ oficina.
 ## 7. Diagrama Entidade-Relacionamento (DER)
 Este diagrama representa o modelo conceitual do banco de dados da oficina mecânica, estruturado para garanitir integridade referencial, histórico de transações e facilidade de expansão.
 
- 
+ ![Diagrama Entidade-Relacionamento da Jackson Moto Peças](der/DER.png)
 
 
 ## 8. Justificativa Técnica
