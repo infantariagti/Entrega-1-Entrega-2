@@ -311,7 +311,7 @@ oficina.
 ## 7. Diagrama Entidade-Relacionamento (DER)
 Este diagrama representa o modelo conceitual do banco de dados da oficina mecânica, estruturado para garanitir integridade referencial, histórico de transações e facilidade de expansão.
 
- <img width="892" height="534" alt="image" src="[https://github.com/user-attachments/assets/0a114625-4481-4d8a-906b-d9c437b1694e](https://github.com/infantariagti/Entrega-1-Modelo-Conceitual-DER-/blob/30761064a786d4f33de05184997518738dbd6033/DER.png)" />
+ 
 
 
 ## 8. Justificativa Técnica
