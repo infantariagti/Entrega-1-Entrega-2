@@ -1,3 +1,4 @@
+<img width="1108" height="621" alt="DER" src="https://github.com/user-attachments/assets/a244aa22-8c5d-4424-adeb-58b5199571e9" />
 # Entrega 1 — Modelo Conceitual (DER)
 ### Modelagem de um sistema de gestão de informações para uma organização de pequeno porte
 
