@@ -105,7 +105,7 @@ RN02 - Disponibilidade e baixa de estoque: Uma peça só pode ser incluída na O
 
 RN03 - Vinculação obrigatória: Toda OS deve estar obrigatoriamente associada a um veículo cadastrado, e todo veículo precisa ter um cliente responsável vinculado no sistema.
 
-RN04 - Liberação de veículo pós-quitação: O encerramento definitivo da OS e a liberação do veículo só podem ser realizados após o registro da quitação do valor total (Pix, dinheiro ou cartão).
+RN04 - Liberação de veículo pós quitação: O encerramento definitivo da OS e a liberação do veículo só podem ser realizados após o registro da quitação do valor total (Pix, dinheiro ou cartão).
 
 RN05 - Alteração de escopo do serviço: Se o mecânico identificar a necessidade de peças ou serviços adicionais durante o conserto, a OS deve entrar em status "Aguardando Nova Aprovação" até a autorização do cliente.
 
@@ -136,7 +136,7 @@ oficina.
 
 | Atributo | Descrição | Regra de negócio associada |	
 | -------- | -------- |	-------- |	
-| id_cliente | Identificador único do cliente no sistema | Obrigatorio, Chave Primária (PK), Gerado automaticamente pelo sistema |	
+| id_cliente | Identificador único do cliente no sistema | Obrigatório, Chave Primária (PK), Gerado automaticamente pelo sistema |	
 | nome | Nome completo do cliente |	Obrigatorio. Exemplo fictício: "Carlos Eduardo Silva". |	
 | cpf | Cadastro de Pessoa Física do cliente | Obrigatorio, Único, Formato válido (11 dígitos). Restrição de privacidade (RO04 - LGPD). Exemplo fictício: "123.456.789-00".|
 | telefone | Número de telefone/WhatsApp para contato | Obrigatorio. Usado para validação de orçamentos e avisos de conclusão de serviço. Exemplo fictício: "(11) 98765-4321".|
@@ -310,7 +310,7 @@ oficina.
 	- O atributo preço_total pertence à entidade ORDEM_SERVICO e é classificado como um atributo derivado, pois representa a soma dos valores dos serviços e das peças relacionados à Ordem de Serviço. Dessa forma, o modelo conceitual permite representar o valor total previsto para cada atendimento sem adicionar entidades associativas ao modelo.
 
 ## 7. Diagrama Entidade-Relacionamento (DER)
-Este diagrama representa o modelo conceitual do banco de dados da oficina mecânica, estruturado para garanitir integridade referencial, histórico de transações e facilidade de expansão.
+Este diagrama representa o modelo conceitual do banco de dados da oficina mecânica, estruturado para garantir integridade referencial, histórico de transações e facilidade de expansão.
 
  <img width="1108" height="621" alt="DER" src="https://github.com/user-attachments/assets/a244aa22-8c5d-4424-adeb-58b5199571e9" />
 
@@ -342,10 +342,23 @@ Este diagrama representa o modelo conceitual do banco de dados da oficina mecân
 
 | Item | O que registrar |
 |------|------------------|
-| **Ferramenta e etapa** | usamos o Gemini 2.5 (3.6 flash/estendido) Somente usado para pesquisa com algumas correções, uso de imagem e ferramentas internas.|
+| **Ferramenta e etapa** | usamos o e Claude Sonnet 5.5 médio e Gemini 2.5 (3.6 flash/estendido) Somente usado para pesquisa com algumas correções, uso de imagem e ferramentas internas.|
 | **Motivação** | Porque ela faz o trabalho pesado e é uma ótima ferramenta para suporte. |
-| **Prompt(s) utilizados** | Sou estudante de 2 semestre de GTI, estou fazendo um trabalho que tem foco usar modelagem de banco de dados em um sistema com um tema abordado de uma empresa de escolha de cada grupo. eu escolhi mecânica e tive que fazer uma entrevista com um mecânico pessoalmente e a oficina dele é pequena sendo o mecânico Dono e só ele trabalha com a esposa dele (ela n faz os reparos das motos). O que eu quero é os requisitos funcionais e não funcionais para eu adicionar ao meu trabalho que será usado para fazer um sistema que beneficie a oficina.|
-| **Resposta recebida** | Todas as respostas foram usadas no esqueleto da entrega com algumas alterações em descrições. |
+| **Prompt(s) utilizados** | Sou estudante de 2 semestre de GTI, estou fazendo um trabalho que tem foco usar modelagem de banco de dados em um sistema com um tema abordado de uma empresa de escolha de cada grupo. eu escolhi mecânica e tive que fazer uma entrevista com um mecânico pessoalmente e a oficina dele é pequena sendo o mecânico Dono e só ele trabalha com a esposa dele (ela n faz os reparos das motos). O que eu quero é os requisitos funcionais e não funcionais para eu adicionar ao meu trabalho que será usado para fazer um sistema que beneficie a oficina.
+Poderia verificar se o texto: RF04 - Garantia de serviço de 90 dias na data da realização do serviço realizado. Esta de acordo com o restante.
+Conforme a revisão documento em anexo. o RF11 fica como melhoria para inserção de revisão e inclusão.
+
+Poderia ajustar esse item com os itens ausente com as justificativas, segue o modelo: Cobertura das Regras de Negócio (Critério 8)
+As informações que coletamos com o mecanico: 
+
+Agendamento não possui apenas entrega a moto.
+Prazo para reparo até 2 dias problemas complexos sem prazo.
+Compra de peças, compra direto com o distribuidor, não tendo prazo para e entrega, pois comparece na loja ou local.
+Não emitem nota fiscal pois tem muito burocracia.
+Possui a capacidade do local de 30 motos.|
+| **Resposta recebida** | Todas as respostas foram usadas no esqueleto da entrega com algumas alterações em descrições.
+RF04 - Recebimento de Peças, Controle de Estoque e Garantia: RF04 - Registrar o recebimento de peças (peça, quantidade e valor de custo), somando a quantidade ao saldo em estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS.
+RF11 - Contas a Pagar (melhoria): Registrar as compras de peças e insumos/consumíveis (óleo, graxa, velas etc.) utilizados nos serviços da oficina, informando descrição, valor, data da compra, data de vencimento e situação (Pendente ou Pago), permitindo consultar os valores a pagar e os já quitados.|
 | **Fontes consultadas e verificadas** | (https://www.ibm.com/br-pt/think/topics/entity-relationship-diagram) e https://www.ibm.com/docs/pt-br/cognos-analytics/12.0.x?topic=r-cardinality fora os matérias fornecidos no drive pelo professor da matéria (Fontes e materiais usados somente como função de estudo e duvidas pertinentes ao projeto) |
 | **Trechos rejeitados ou corrigidos** | O código feito em Snippet por engano no critério 7º do esqueleto, Deveria ser uma imagem mas acabou tendo um equívoco da IA e ela fez o código, correção onde a IA informa ter que criar entidades que não fazem parte do modelo conceitual |
 | **Justificativa da escolha final** | Houve ajustes e a IA sempre foi essencial em trabalhos que manualmente levaria mais tempo para ser finalizado tal como uma ótima ferramenta para revisar os updates feitos, então considerando que a revisão com a IA e com os colaboradores do grupo estavam alinhadas é possível dizer que estamos satisfeitos com a finalização do projeto. |
