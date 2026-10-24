@@ -342,3 +342,161 @@ Este diagrama representa o modelo conceitual do banco de dados da oficina mecân
 | **Justificativa da escolha final** | Houve ajustes e a IA sempre foi essencial em trabalhos que manualmente levaria mais tempo para ser finalizado tal como uma ótima ferramenta para revisar os updates feitos, então considerando que a revisão com a IA e com os colaboradores do grupo estavam alinhadas é possível dizer que estamos satisfeitos com a finalização do projeto. |
 | **Reflexão crítica** | Como informado o uso da IA se teve pela ideia de otimizar tempo, nós como colaboradores entendemos que a IA deve e foi utilizada como uma ferramenta de suporte, fizemos uma revisão constante a partir do uso da ferramenta para prevenir erros.|
 
+
+
+
+## 10. Normalização do Banco de Dados
+
+A normalização tem como objetivo organizar os dados, reduzir duplicidades e evitar inconsistências durante as operações do sistema.
+
+### Primeira Forma Normal (1FN)
+
+Cada tabela deve possuir uma chave primária e armazenar valores atômicos, ou seja, cada campo deve conter um único valor por registro.
+
+No projeto, os dados dos clientes ficam separados dos dados dos veículos, e as peças e os serviços possuem seus próprios cadastros. Isso evita armazenar várias peças ou serviços em um único campo da ordem de serviço.
+
+### Segunda Forma Normal (2FN)
+
+A segunda forma normal exige que a tabela esteja na 1FN e que todos os atributos não-chave dependam da chave primária completa.
+
+Nas tabelas intermediárias que relacionam ordens de serviço com peças e serviços, os dados específicos de cada item devem depender da identificação do item na respectiva ordem de serviço. Os dados gerais das peças e dos serviços permanecem em suas tabelas próprias.
+
+### Terceira Forma Normal (3FN)
+
+A terceira forma normal exige que a tabela esteja na 2FN e que os atributos não-chave dependam diretamente da chave primária, sem dependências transitivas indevidas.
+
+No projeto, os dados de identificação e contato ficam na tabela CLIENTE, os dados das motocicletas ficam em VEICULO, o catálogo de peças fica em PECA e o catálogo de serviços fica em SERVICO. A ORDEM_SERVICO registra o atendimento realizado.
+
+Essa separação facilita a manutenção dos dados e reduz a necessidade de repetir informações em diferentes registros.
+
+**Observação:** a confirmação formal das formas normais deve ser feita após a finalização do modelo lógico, verificando as dependências funcionais e as chaves de cada tabela.
+
+## 11. Dicionário de Dados
+
+O dicionário de dados descreve as tabelas, seus atributos, tipos, chaves e restrições de integridade.
+
+O projeto contempla as seguintes entidades principais:
+
+* **CLIENTE:** identifica os proprietários das motocicletas e armazena seus dados cadastrais.
+* **VEICULO:** armazena placa, modelo, marca, ano, cor e quilometragem da motocicleta.
+* **ORDEM_SERVICO:** registra a entrada da motocicleta, o defeito relatado, o diagnóstico, o status e as informações de atendimento.
+* **PECA:** mantém o cadastro de peças, referências comerciais, custos, preços e quantidades em estoque.
+* **SERVICO:** mantém o catálogo de serviços prestados pela oficina e seus preços padrão.
+
+Para representar os itens de cada ordem de serviço, o modelo lógico também deverá documentar as tabelas intermediárias utilizadas para associar peças e serviços às ordens, incluindo os atributos necessários para registrar quantidades e preços praticados.
+
+O dicionário definitivo deverá apresentar, para cada atributo, o nome, a descrição, o tipo de dado, a indicação de PK ou FK, a obrigatoriedade e as restrições aplicáveis.
+
+## 12. Proposta de Business Intelligence (BI)
+
+A utilização de BI permitirá transformar os dados registrados pelo sistema em informações úteis para a administração da oficina.
+
+### Indicadores propostos (KPIs)
+
+**KPI 1 — Ordens de serviço concluídas por mês**
+
+* Objetivo: acompanhar o volume de atendimentos finalizados.
+* Fórmula: quantidade de ordens de serviço concluídas no mês.
+* Periodicidade: mensal.
+* Tabelas envolvidas: ORDEM_SERVICO.
+* Consulta prevista: G01.
+
+**KPI 2 — Faturamento por período**
+
+* Objetivo: acompanhar o valor dos serviços e das peças vendidos pela oficina.
+* Fórmula: soma dos valores efetivamente cobrados nas ordens de serviço finalizadas e pagas, conforme os registros financeiros disponíveis.
+* Periodicidade: mensal.
+* Tabelas envolvidas: ORDEM_SERVICO e tabelas de itens.
+* Consulta prevista: G02.
+
+**KPI 3 — Peças abaixo do estoque mínimo**
+
+* Objetivo: identificar peças que precisam de reposição.
+* Fórmula: contagem de peças cujo estoque atual é inferior ao estoque mínimo cadastrado.
+* Periodicidade: diária.
+* Tabela envolvida: PECA.
+* Consulta prevista: G03.
+
+**KPI 4 — Tempo médio de atendimento**
+
+* Objetivo: avaliar o tempo entre a entrada da motocicleta e a conclusão do serviço.
+* Fórmula: média do intervalo entre data de entrada e data de saída das ordens de serviço concluídas.
+* Periodicidade: mensal.
+* Tabela envolvida: ORDEM_SERVICO.
+* Consulta prevista: G04.
+
+As consultas identificadas como G01 a G04 deverão ser implementadas no script SQL e associadas aos indicadores correspondentes. Os resultados deverão ser validados com dados fictícios coerentes antes da apresentação.
+
+## 13. Proposta de Inteligência Artificial (IA)
+
+A Inteligência Artificial poderá ser utilizada futuramente como ferramenta de apoio à análise e à tomada de decisões da oficina.
+
+### Aplicações propostas
+
+**1. Previsão de demanda de peças**
+
+A análise do histórico de utilização das peças poderá ajudar a identificar itens com maior procura e apoiar o planejamento de compras.
+
+**2. Apoio ao diagnóstico**
+
+O histórico de defeitos relatados, diagnósticos técnicos e serviços executados poderá auxiliar os mecânicos na consulta de ocorrências semelhantes. A decisão final continuará sob responsabilidade do profissional.
+
+**3. Análise do tempo de atendimento**
+
+A análise dos registros de entrada e saída poderá identificar serviços que frequentemente ultrapassam os prazos previstos e auxiliar no planejamento da agenda.
+
+### Limitações e cuidados
+
+As propostas dependem da existência de dados históricos suficientes, consistentes e atualizados. A IA deverá ser utilizada como apoio, sem substituir a avaliação técnica dos mecânicos.
+
+Os dados pessoais dos clientes deverão ser protegidos, com acesso restrito e utilização apenas para finalidades justificadas.
+
+## 14. Consultas Gerenciais e de Auditoria
+
+As consultas SQL deverão demonstrar como o banco de dados contribui para resolver os problemas identificados na oficina.
+
+### Consultas gerenciais
+
+* **G01:** quantidade de ordens de serviço concluídas por mês.
+* **G02:** faturamento por período.
+* **G03:** peças com estoque abaixo do mínimo.
+* **G04:** tempo médio de atendimento.
+
+### Consultas de auditoria
+
+* **A01:** verificar ordens de serviço sem cliente ou veículo válido.
+* **A02:** identificar ordens de serviço sem itens de peças ou serviços quando isso contrariar as regras definidas para o atendimento.
+* **A03:** verificar possíveis inconsistências entre estoque, quantidades utilizadas e registros de movimentação.
+
+Cada consulta deverá possuir um cabeçalho SQL com seu código, objetivo e problema ou regra de negócio atendida. Os nomes e as regras definitivas deverão corresponder à estrutura efetivamente implementada.
+
+## 15. Organização do Repositório
+
+O repositório deverá manter os arquivos necessários para compreender, executar e avaliar o projeto.
+
+* `README.md`: relatório técnico principal.
+* `docs/`: scripts SQL e massa de dados fictícios.
+* `levantamento/`: texto organizado do levantamento e da entrevista.
+* `der/`: DER conceitual revisado.
+* `modelo-logico/`: modelo lógico elaborado no brModelo.
+* `dicionario-de-dados/`: dicionário de dados definitivo, no formato solicitado para a turma.
+* Arquivos de evidência: fotografias JPG ou PNG da organização.
+
+Os arquivos complementares deverão ser referenciados por links no README. O histórico de commits deve demonstrar a participação dos integrantes ao longo do desenvolvimento.
+
+## 16. Registro do Uso de Inteligência Artificial
+
+O grupo informou que utilizou o Gemini 2.5 para pesquisas e apoio durante o desenvolvimento do projeto.
+
+O registro deve identificar a ferramenta, a etapa em que foi utilizada, a motivação, os prompts empregados, as respostas recebidas, as fontes verificadas, os trechos rejeitados ou corrigidos e uma reflexão crítica sobre suas limitações.
+
+O grupo também registrou que revisou sugestões e corrigiu partes que não correspondiam ao modelo conceitual. Esse procedimento deve ser mantido durante a Entrega 2, documentando também os usos adicionais de IA realizados nesta etapa.
+
+## 17. Considerações Finais
+
+O modelo proposto busca organizar as informações da Jackson Moto Peças, melhorar o controle de ordens de serviço e estoque e facilitar a consulta ao histórico de atendimento das motocicletas.
+
+A implementação em MySQL permitirá validar as regras de integridade e executar consultas gerenciais e de auditoria. A partir dos dados registrados, as propostas de BI e IA poderão apoiar o planejamento da oficina e a tomada de decisões.
+
+A conclusão definitiva do projeto depende da revisão do modelo lógico, da execução dos scripts SQL, da validação das consultas e da conferência de todos os artefatos exigidos na Entrega 2.
+
