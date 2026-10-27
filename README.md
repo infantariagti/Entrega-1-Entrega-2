@@ -395,9 +395,9 @@ Essa separação facilita a manutenção dos dados e reduz a necessidade de repe
 
 ## 11. Dicionário de Dados
 
-O dicionário de dados descreve as tabelas, seus atributos, tipos, chaves e restrições de integridade.
+O dicionário de dados descreve as entidades utilizadas no sistema de gestão da oficina, seus atributos, regras de preenchimento e relacionamentos.
 
-**1. Entidades, atributos e relacionamentos**
+**11.1 Entidades, atributos e relacionamentos**
 
 O projeto contempla as seguintes entidades principais:
 
@@ -405,11 +405,102 @@ O projeto contempla as seguintes entidades principais:
 * **VEICULO:** armazena placa, modelo, marca, ano, cor e quilometragem da motocicleta.
 * **ORDEM_SERVICO:** registra a entrada da motocicleta, o defeito relatado, o diagnóstico, o status e as informações de atendimento.
 * **PECA:** mantém o cadastro de peças, referências comerciais, custos, preços e quantidades em estoque.
-* **SERVICO:** mantém o catálogo de serviços prestados pela oficina e seus preços padrão.
+* **ITEM_OS_PECA:** entidade associativa que relaciona as ordens de serviço às peças utilizadas, registrando quantidade, preço de custo e preço de venda.
+* **ITEM_OS_SERVICO:** entidade associativa que relaciona as ordens de serviço aos serviços realizados, registrando quantidade, preço unitário e subtotal.
 
-Para representar os itens de cada ordem de serviço, o modelo lógico também deverá documentar as tabelas intermediárias utilizadas para associar peças e serviços às ordens, incluindo os atributos necessários para registrar quantidades e preços praticados.
+**Relacionamentos e cardinalidades**
 
-2. Fluxo de dados
+Os relacionamentos do modelo representam as associações entre as entidades e definem quantos registros podem estar relacionados entre si.
+
+* **CLIENTE e VEICULO — Rel:** um cliente pode estar relacionado a zero ou vários veículos, enquanto cada veículo está relacionado a exatamente um cliente.
+* **VEICULO e ORDEM_SERVICO — Gera:** um veículo pode gerar zero ou várias ordens de serviço, enquanto cada ordem de serviço está vinculada a exatamente um veículo.
+* **ORDEM_SERVICO e ITEM_OS_PECA — Contém:** uma ordem de serviço pode conter zero ou vários itens de peças, enquanto cada item de peça pertence a exatamente uma ordem de serviço.
+* **ITEM_OS_PECA e PECA:** cada item de peça está relacionado a exatamente uma peça, enquanto uma peça pode estar presente em zero ou vários itens de ordens de serviço.
+* **ORDEM_SERVICO e ITEM_OS_SERVICO — Contém:** uma ordem de serviço pode conter zero ou vários itens de serviços, enquanto cada item de serviço pertence a exatamente uma ordem de serviço.
+* **ITEM_OS_SERVICO e SERVICO:** cada item de serviço está relacionado a exatamente um serviço do catálogo, enquanto um serviço pode estar presente em zero ou vários itens de ordens de serviço.
+
+As entidades associativas permitem registrar quantidades e valores específicos de cada item em uma ordem de serviço, preservando o histórico dos preços praticados e possibilitando que uma mesma peça ou serviço seja utilizado em diferentes atendimentos.
+
+**Atributos**
+
+**Cliente**
+Armazena os dados cadastrais dos clientes da oficina.
+
+| Atributo | Descrição              | Tipo (MySQL) | Chave | Obrigatório | Regra/Restrição | 
+|----------|------------------------|--------------|-------|-------------|-----------------|
+|ID_Cliente|Identificador do cliente|INT           |PK     |Sim			 |AUTO_INCREMENT   |
+|Nome      |Nome do cliente         |VARCHAR(100)  |-      |Sim          |Nome cadastrado  |
+|CPF       |CPF do cliente          |CHAR(11)      |-	   |Sim          |Válido e único   |
+|Telefone  |Telefone de contato     |VARCHAR(20)   |-	   |Sim          |Incluir DDD      |
+|Endereço  |Endereço completo       |VARCHAR(200)  |-	   |Sim          |-                |
+|Logradouro|Rua ou avenida          |VARCHAR(150)  |-	   |Não          |-                |
+|Bairro    |Bairro do cliente       |VARCHAR(100)  |-	   |Não          |-                |
+
+**VEICULO**
+Registra as motocicletas vinculadas aos clientes.
+
+| Atributo | Descrição              | Tipo (MySQL) | Chave | Obrigatório | Regra/Restrição    | 
+|----------|------------------------|--------------|-------|-------------|--------------------|
+|ID_Veiculo|Identificador do veiculo|INT           |PK     |Sim			 |AUTO_INCREMENT      |
+|Ano       |Ano de fabricação/modelo|YEAR          |-      |Sim          |Ano válido          |
+|Marca     |Marca da motocicleta    |VARCHAR(60)   |-	   |Sim          |Não pode ficar vazio|
+|Modelo    |Modelo da motocicleta   |VARCHAR(80)   |-	   |Sim          |Não pode ficar vazio|
+|Placa     |Placa de identificação  |VARCHAR(7)    |-	   |Sim          |Única               |
+|KM_atual  |Quilometragem atual     |INT           |-	   |Não          |> ou = a zero       |
+|ID_Cliente|Cliente proprietário    |INT           |FK	   |Sim          |Referencia Cliente  |
+|Cor       |Cor da motocicleta      |VARCHAR(40)   |-	   |Sim          |Cor cadastrada      |
+
+**ORDEM_SERVICO**
+Registra os atendimentos e serviços realizados nas motocicletas.
+
+| Atributo          | Descrição                     | Tipo (MySQL)  | Chave | Obrigatório | Regra/Restrição       | 
+|-------------------|-------------------------------|---------------|-------|-------------|-----------------------|
+|Numero_OS          |identificador da ordem         |INT            |PK     |Sim		  |AUTO_INCREMENT         |
+|Data_entrada       |Data e hora de entrada         |DATETIME       |-      |Sim          |Registrar a entrada    |
+|Data_prevista      |Previsão de conclusão          |DATETIME       |-	    |Não          |-                      |
+|Status_OS          |Situação da ordem              |VARCHAR(30)    |-	    |Sim          |-                      |
+|Defeito_relatado   |Problema informado             |TEXT           |-	    |Sim          |relatar a reclamação   |
+|Diagnostico_Tecnico|Diagnóstico realizado          |TEXT           |-	    |Não          |-                      |
+|Prazo_garantia     |garantia do serviço            |DATE           |-	    |Sim          |-                      |
+|Validade_orcamento |Data limite de validade        |DATE           |-	    |Não          |-                      |
+|Forma_pagamento    |Forma de pagamento acordada    |VARCHAR(30)    |-	    |Não          |Utilizar opções aceitas|
+|Preco_total        |preço total da ordem de serviço|DECIMAL(10,2)  |-	    |Não          |= ou > a zero          |
+|ID_Veiculo         |Veículo atendido               |INT            |FK	    |Sim          |Referencia Veiculo     |
+
+**PECA**
+ Mantém o cadastro das peças e o controle de estoque.
+ 
+| Atributo         | Descrição                      | Tipo (MySQL)| Chave | Obrigatório | Regra/Restrição    | 
+|------------------|--------------------------------|-------------|-------|-------------|--------------------|
+|ID_Peca           |Identificador da peça           |INT          |PK     |Sim		    |AUTO_INCREMENT      |
+|Preco_Custo       |Custo de aquisição da peça      |DECIMAL(10,2)|-      |Sim          |> ou = a zero       |
+|Preco_Venda       |Preço de venda da peça          |DECIMAL(10,2)|-	  |Sim          |> ou = a zero       |
+|Estoque_Minimo    |Quantidade mínima de estoque    |INT          |-	  |Sim          |> ou = a zero       |
+|Quantidade_Estoque|Quantidade disponível em estoque|INT          |-	  |Sim          |> ou = a zero       |
+|Codigo_Referencia |Código de referência comercial  |VARCHAR(50)  |-	  |Sim          |Única               |
+|Descricao_Peca    |Descrição da peça               |VARCHAR(150) |-	  |Sim          |Não pode ficar vazio|
+
+**SERVIÇO**
+
+**ITEM_OS_PECA**
+
+**ITEM_OS_SERVICO**
+
+
+**11.2 Fluxo de dados**
+
+
+**11.3 Convenções adotadas**
+
+
+**11.4 Especificação física**
+
+
+**11.5 Log de acesso**
+
+
+**11.6 Controle de acesso e LGPD**
+
 
 ## 12. Proposta de Business Intelligence (BI)
 
