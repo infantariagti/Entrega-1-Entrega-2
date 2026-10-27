@@ -397,6 +397,8 @@ Essa separação facilita a manutenção dos dados e reduz a necessidade de repe
 
 O dicionário de dados descreve as tabelas, seus atributos, tipos, chaves e restrições de integridade.
 
+**1. Entidades, atributos e relacionamentos**
+
 O projeto contempla as seguintes entidades principais:
 
 * **CLIENTE:** identifica os proprietários das motocicletas e armazena seus dados cadastrais.
@@ -407,7 +409,7 @@ O projeto contempla as seguintes entidades principais:
 
 Para representar os itens de cada ordem de serviço, o modelo lógico também deverá documentar as tabelas intermediárias utilizadas para associar peças e serviços às ordens, incluindo os atributos necessários para registrar quantidades e preços praticados.
 
-O dicionário definitivo deverá apresentar, para cada atributo, o nome, a descrição, o tipo de dado, a indicação de PK ou FK, a obrigatoriedade e as restrições aplicáveis.
+2. Fluxo de dados
 
 ## 12. Proposta de Business Intelligence (BI)
 
