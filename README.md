@@ -424,6 +424,7 @@ As entidades associativas permitem registrar quantidades e valores específicos 
 **Atributos**
 
 **Cliente**
+
 Armazena os dados cadastrais dos clientes da oficina.
 
 | Atributo | Descrição              | Tipo (MySQL) | Chave | Obrigatório | Regra/Restrição | 
@@ -437,6 +438,7 @@ Armazena os dados cadastrais dos clientes da oficina.
 |Bairro    |Bairro do cliente       |VARCHAR(100)  |-	   |Não          |-                |
 
 **VEICULO**
+
 Registra as motocicletas vinculadas aos clientes.
 
 | Atributo | Descrição              | Tipo (MySQL) | Chave | Obrigatório | Regra/Restrição    | 
@@ -451,6 +453,7 @@ Registra as motocicletas vinculadas aos clientes.
 |Cor       |Cor da motocicleta      |VARCHAR(40)   |-	   |Sim          |Cor cadastrada      |
 
 **ORDEM_SERVICO**
+
 Registra os atendimentos e serviços realizados nas motocicletas.
 
 | Atributo          | Descrição                     | Tipo (MySQL)  | Chave | Obrigatório | Regra/Restrição       | 
@@ -468,7 +471,8 @@ Registra os atendimentos e serviços realizados nas motocicletas.
 |ID_Veiculo         |Veículo atendido               |INT            |FK	    |Sim          |Referencia Veiculo     |
 
 **PECA**
- Mantém o cadastro das peças e o controle de estoque.
+
+Mantém o cadastro das peças e o controle de estoque.
  
 | Atributo         | Descrição                      | Tipo (MySQL)| Chave | Obrigatório | Regra/Restrição    | 
 |------------------|--------------------------------|-------------|-------|-------------|--------------------|
@@ -482,10 +486,40 @@ Registra os atendimentos e serviços realizados nas motocicletas.
 
 **SERVIÇO**
 
+Armazena o catálogo de serviços oferecidos pela oficina.
+
+| Atributo        | Descrição              | Tipo (MySQL) | Chave | Obrigatório | Regra/Restrição    | 
+|-----------------|------------------------|--------------|-------|-------------|--------------------|
+|ID_Servico       |Identificador do serviço|INT           |PK     |Sim		    |AUTO_INCREMENT      |
+|Nome_Servico     |Nome do serviço         |VARCHAR(100)  |-      |Sim          |Não pode ficar vazio|
+|Preco_Padrao     |Preço padrão do serviço |DECIMAL(10,2) |-	  |Sim          |> ou = a zero       |
+|Descricao_Servico|Descrição do serviço    |TEXT          |-	  |Não          |-                   |
+
 **ITEM_OS_PECA**
+
+Relaciona uma ordem de serviço às peças utilizadas, permitindo registrar quantidades e valores específicos para cada atendimento.
+
+| Atributo   | Descrição                     	| Tipo (MySQL) | Chave | Obrigatório | Regra/Restrição        | 
+|------------|----------------------------------|--------------|-------|-------------|------------------------|
+|ID_Item_Peca|Identificador do item de peça     |INT           |PK     |Sim		     |AUTO_INCREMENT          |
+|Quantidade  |Quantidade de peças utilizadas    |INT           |-      |Sim          |Maior que zero          |
+|Preco_Custo |Custo unitário da peça no registro|DECIMAL(10,2) |-	   |Não          |> ou = a zero           |
+|Preco_Venda |Preço unitário de venda           |DECIMAL(10,2) |-	   |Não          |> ou = a zero           |
+|Numero_OS   |Ordem de serviço relacionada      |INT           |FK	   |Sim          |Referencia ORDEM_SERVICO|
+|ID_Peca     |Peça utilizada                    |INT           |FK	   |Sim          |Referencia PECA         |
 
 **ITEM_OS_SERVICO**
 
+Relaciona os serviços executados às ordens de serviço.
+
+| Atributo      | Descrição                      | Tipo (MySQL) | Chave | Obrigatório | Regra/Restrição           | 
+|---------------|--------------------------------|--------------|-------|-------------|---------------------------|
+|ID_Item_Servico|Identificador do item de serviço|INT           |PK     |Sim		  |AUTO_INCREMENT             |
+|Quantidade     |Quantidade registrada do serviço|INT           |-      |Sim          |Maior que zero             |
+|Preco_Unitario |Preço unitário praticado        |DECIMAL(10,2) |-	    |Sim          |> ou = a zero              |
+|Sub_Total      |Preço total do item             |DECIMAL(10,2) |-	    |Não          |Quantidade × preço unitário|
+|Numero_OS      |Ordem de serviço relacionada    |INT           |FK	    |Sim          |Referencia ORDEM_SERVICO   |
+|ID_Servico     |Serviço executado               |INT           |FK	    |Sim          |Referencia SERVICO         |
 
 **11.2 Fluxo de dados**
 
