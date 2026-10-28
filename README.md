@@ -344,9 +344,9 @@ Este diagrama representa o modelo conceitual do banco de dados da oficina mecân
 |------|------------------|
 | **Ferramenta e etapa** | usamos o e Claude Sonnet 5.5 médio e Gemini 2.5 (3.6 flash/estendido) Somente usado para pesquisa com algumas correções, uso de imagem e ferramentas internas.|
 | **Motivação** | Porque ela faz o trabalho pesado e é uma ótima ferramenta para suporte. |
-| **Prompt(s) utilizados** | Sou estudante de 2 semestre de GTI, estou fazendo um trabalho que tem foco usar modelagem de banco de dados em um sistema com um tema abordado de uma empresa de escolha de cada grupo. eu escolhi mecânica e tive que fazer uma entrevista com um mecânico pessoalmente e a oficina dele é pequena sendo o mecânico Dono e só ele trabalha com a esposa dele (ela n faz os reparos das motos). O que eu quero é os requisitos funcionais e não funcionais para eu adicionar ao meu trabalho que será usado para fazer um sistema que beneficie a oficina.
-Poderia verificar se o texto: RF04 - Garantia de serviço de 90 dias na data da realização do serviço realizado. Esta de acordo com o restante.
-Conforme a revisão documento em anexo. o RF11 fica como melhoria para inserção de revisão e inclusão.
+| **Prompt(s) utilizados** | Sou estudante de 2 semestre de GTI, estou fazendo um trabalho que tem foco usar modelagem de banco de dados em um sistema com um tema abordado de uma empresa de escolha de cada grupo. eu escolhi mecânica e tive que fazer uma entrevista com um mecânico pessoalmente e a oficina dele é pequena sendo o mecânico Dono e só ele trabalha com a esposa dele (ela n faz os reparos das motos). O que eu quero é os requisitos funcionais e não funcionais para eu adicionar ao meu trabalho que será usado para fazer um sistema que beneficie a oficina. |
+| Poderia verificar se o texto: RF04 - Garantia de serviço de 90 dias na data da realização do serviço realizado. Esta de acordo com o restante. |
+| Conforme a revisão documento em anexo. o RF11 fica como melhoria para inserção de revisão e inclusão. |
 
 Poderia ajustar esse item com os itens ausente com as justificativas, segue o modelo: Cobertura das Regras de Negócio (Critério 8)
 As informações que coletamos com o mecanico: 
