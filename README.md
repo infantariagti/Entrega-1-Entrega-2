@@ -348,7 +348,7 @@ Este diagrama representa o modelo conceitual do banco de dados da oficina mecân
 |          | Poderia verificar se o texto: RF04 - Garantia de serviço de 90 dias na data da realização do serviço realizado. Esta de acordo com o restante. |
 |          | Conforme a revisão documento em anexo. o RF11 fica como melhoria para inserção de revisão e inclusão. |
 
-|          | Poderia ajustar esse item com os itens ausente com as justificativas, segue o modelo: Cobertura das Regras de Negócio (Critério 8)
+|          | Poderia ajustar esse item com os itens ausente com as justificativas, segue o modelo: Cobertura das Regras de Negócio (Critério 8)|
 |As informações que coletamos com o mecânico:| 
 |Agendamento não possui apenas entrega a moto.
 Prazo para reparo até 2 dias problemas complexos sem prazo.
