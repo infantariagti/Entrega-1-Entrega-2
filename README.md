@@ -345,17 +345,15 @@ Este diagrama representa o modelo conceitual do banco de dados da oficina mecân
 | **Ferramenta e etapa** | usamos o e Claude Sonnet 5.5 médio e Gemini 2.5 (3.6 flash/estendido) Somente usado para pesquisa com algumas correções, uso de imagem e ferramentas internas.|
 | **Motivação** | Porque ela faz o trabalho pesado e é uma ótima ferramenta para suporte. |
 | **Prompt(s) utilizados** | Sou estudante de 2 semestre de GTI, estou fazendo um trabalho que tem foco usar modelagem de banco de dados em um sistema com um tema abordado de uma empresa de escolha de cada grupo. eu escolhi mecânica e tive que fazer uma entrevista com um mecânico pessoalmente e a oficina dele é pequena sendo o mecânico Dono e só ele trabalha com a esposa dele (ela n faz os reparos das motos). O que eu quero é os requisitos funcionais e não funcionais para eu adicionar ao meu trabalho que será usado para fazer um sistema que beneficie a oficina. |
-|---------| Poderia verificar se o texto: RF04 - Garantia de serviço de 90 dias na data da realização do serviço realizado. Esta de acordo com o restante. |
-|---------| Conforme a revisão documento em anexo. o RF11 fica como melhoria para inserção de revisão e inclusão. |
+|          | Poderia verificar se o texto: RF04 - Garantia de serviço de 90 dias na data da realização do serviço realizado. Esta de acordo com o restante. |
+|          | Conforme a revisão documento em anexo. o RF11 fica como melhoria para inserção de revisão e inclusão. |
 
-Poderia ajustar esse item com os itens ausente com as justificativas, segue o modelo: Cobertura das Regras de Negócio (Critério 8)
-As informações que coletamos com o mecanico: 
-
-Agendamento não possui apenas entrega a moto.
+|          | Poderia ajustar esse item com os itens ausente com as justificativas, segue o modelo: Cobertura das Regras de Negócio (Critério 8)
+|As informações que coletamos com o mecânico:| 
+|Agendamento não possui apenas entrega a moto.
 Prazo para reparo até 2 dias problemas complexos sem prazo.
 Compra de peças, compra direto com o distribuidor, não tendo prazo para e entrega, pois comparece na loja ou local.
-Não emitem nota fiscal pois tem muito burocracia.
-Possui a capacidade do local de 30 motos.|
+Não emitem nota fiscal pois tem muito burocracia. Possui a capacidade do local de 30 motos.|
 | **Resposta recebida** | Todas as respostas foram usadas no esqueleto da entrega com algumas alterações em descrições.
 RF04 - Recebimento de Peças, Controle de Estoque e Garantia: RF04 - Registrar o recebimento de peças (peça, quantidade e valor de custo), somando a quantidade ao saldo em estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS.
 RF11 - Contas a Pagar (melhoria): Registrar as compras de peças e insumos/consumíveis (óleo, graxa, velas etc.) utilizados nos serviços da oficina, informando descrição, valor, data da compra, data de vencimento e situação (Pendente ou Pago), permitindo consultar os valores a pagar e os já quitados.|
