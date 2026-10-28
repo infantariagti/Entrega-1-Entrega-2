@@ -348,11 +348,10 @@ Este diagrama representa o modelo conceitual do banco de dados da oficina mecân
 |          | Poderia verificar se o texto: RF04 - Garantia de serviço de 90 dias na data da realização do serviço realizado. Esta de acordo com o restante. |
 |          | Conforme a revisão documento em anexo. o RF11 fica como melhoria para inserção de revisão e inclusão. |
 |          | Poderia ajustar esse item com os itens ausente com as justificativas, segue o modelo: Cobertura das Regras de Negócio (Critério 8)|
-|As informações que coletamos com o mecânico:| 
-|Agendamento não possui apenas entrega a moto.|
-Prazo para reparo até 2 dias problemas complexos sem prazo.
-Compra de peças, compra direto com o distribuidor, não tendo prazo para e entrega, pois comparece na loja ou local.
-Não emitem nota fiscal pois tem muito burocracia. Possui a capacidade do local de 30 motos.|
+|As informações que coletamos com o mecânico:| |Agendamento não possui apenas entrega a moto.|
+|          | Prazo para reparo até 2 dias problemas complexos sem prazo.
+|          |Compra de peças, compra direto com o distribuidor, não tendo prazo para e entrega, pois comparece na loja ou local.
+|          | Não emitem nota fiscal pois tem muito burocracia. Possui a capacidade do local de 30 motos.|
 | **Resposta recebida** | Todas as respostas foram usadas no esqueleto da entrega com algumas alterações em descrições.
 RF04 - Recebimento de Peças, Controle de Estoque e Garantia: RF04 - Registrar o recebimento de peças (peça, quantidade e valor de custo), somando a quantidade ao saldo em estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS.
 RF11 - Contas a Pagar (melhoria): Registrar as compras de peças e insumos/consumíveis (óleo, graxa, velas etc.) utilizados nos serviços da oficina, informando descrição, valor, data da compra, data de vencimento e situação (Pendente ou Pago), permitindo consultar os valores a pagar e os já quitados.|
