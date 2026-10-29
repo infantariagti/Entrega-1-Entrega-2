@@ -650,6 +650,7 @@ O mecanismo permitirá registrar operações relevantes realizadas sobre cliente
 **11.6 Controle de acesso e LGPD**
 
 **Acesso por operação**
+
 Como o projeto se baseia em um oficina pequena, existem dois perfis de acesso: atendente e mecânico.
 
 | Operação                          |Atendente|Mecânico                | 
