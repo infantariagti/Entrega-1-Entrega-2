@@ -649,6 +649,27 @@ O mecanismo permitirá registrar operações relevantes realizadas sobre cliente
 
 **11.6 Controle de acesso e LGPD**
 
+**Acesso por operação**
+Como o projeto se baseia em um oficina pequena, existem dois perfis de acesso: atendente e mecânico.
+
+| Operação                          |Atendente|Mecânico                | 
+|-----------------------------------|---------|------------------------|
+|Consultar clientes e motocicletas  |Sim      |Sim, quando necessário  |
+|Cadastrar clientes e motocicletas  |Sim      |Não                     |
+|Abrir e atualizar ordens de serviço|Sim      |Sim, conforme sua função|
+|Registrar diagnóstico técnico      |Não      |Sim                     |
+|Consultar peças e estoque          |Sim      |Sim                     |
+|Alterar preços e dados de estoque  |Restrito |Restrito                |
+|Excluir registros                  |Restrito |Restrito                |
+
+
+**Proteção de dados pessoais — LGPD**
+
+O sistema poderá armazenar dados pessoais de clientes, como nome, CPF, telefone e endereço. Essas informações deverão ser utilizadas para finalidades legítimas relacionadas ao cadastro, atendimento, execução dos serviços e cumprimento de obrigações aplicáveis.
+
+A coleta e o tratamento dos dados deverão observar os princípios da finalidade, necessidade, segurança e transparência previstos na Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018). A base legal deverá ser definida conforme a finalidade de cada tratamento, podendo incluir a execução de contrato, o cumprimento de obrigação legal ou regulatória e outras hipóteses legalmente aplicáveis.
+
+Os dados deverão ser mantidos pelo período necessário às finalidades do tratamento e às obrigações legais aplicáveis. Após esse período, deverão ser eliminados ou anonimizados quando cabível, observadas as hipóteses legais de conservação.
 
 ## 12. Proposta de Business Intelligence (BI)
 
