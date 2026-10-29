@@ -505,15 +505,147 @@ Relaciona os serviços executados às ordens de serviço.
 
 **11.2 Fluxo de dados**
 
+O fluxo de dados do sistema da Jackson Moto Peças inicia-se com o cadastro do cliente e de sua motocicleta. Em seguida, é aberta uma Ordem de Serviço (OS), na qual são registrados os dados de entrada, o defeito relatado, o diagnóstico técnico, o status e as informações do orçamento.
+
+Durante a manutenção, são registrados os serviços realizados e os valores correspondentes. As peças necessárias são obtidas do estoque da oficina, que mantém informações sobre descrição, custos, preços de cobrança e quantidades disponíveis. Quando necessário, a oficina realiza a compra de peças de fornecedores para atender às demandas das manutenções.
+
+Os valores das peças utilizadas são considerados na composição do valor cobrado do cliente, juntamente com os serviços executados. As informações são armazenadas no banco de dados MySQL, organizadas conforme as entidades e os relacionamentos definidos no modelo.
+
+Por fim, os dados podem ser consultados para acompanhar o andamento das ordens de serviço, verificar o histórico de atendimento das motocicletas, consultar a disponibilidade de peças e recuperar os valores associados aos serviços realizados.
 
 **11.3 Convenções adotadas**
 
+SGBD: MySQL 8.0.46.
+
+collation: O projeto utiliza o conjunto de caracteres utf8mb4_0900_ai_ci, Ela oferece suporte a caracteres Unicode. 
+
+Notação formal: As chaves primárias são identificadas pela sigla PK (Primary Key), enquanto as chaves estrangeiras são identificadas pela sigla FK (Foreign Key). Os tipos de dados são definidos conforme a natureza das informações armazenadas, utilizando, por exemplo, INT para números inteiros, VARCHAR para textos, DATE para datas e DECIMAL(10,2) para valores monetários.
+
+Prefixos: Não são utilizados prefixos adicionais padronizados. Os identificadores seguem nomes descritivos, como ID_Cliente, ID_Veiculo e Numero_OS.
+
+Versão: O ambiente de banco de dados utilizado no projeto é o MySQL 8.0.46.
 
 **11.4 Especificação física**
 
+**Expressão formal e tipos físicos:**
+
+A expressão formal do modelo físico é representada por comandos SQL CREATE TABLE, que definem as entidades, seus atributos, tipos de dados, chaves primárias, chaves estrangeiras e restrições de integridade. As definições apresentadas correspondem à estrutura física proposta para implementação no MySQL 8.0.46.
+
+**CLIENTE**
+
+CREATE TABLE Cliente (
+    ID_Cliente INT AUTO_INCREMENT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    CPF CHAR(11) UNIQUE,
+    Telefone VARCHAR(20),
+    Endereco VARCHAR(200),
+    Logradouro VARCHAR(150),
+    Bairro VARCHAR(100)
+);
+
+**VEICULO**
+
+CREATE TABLE Veiculo (
+    ID_Veiculo INT AUTO_INCREMENT PRIMARY KEY,
+    Ano YEAR,
+    Marca VARCHAR(60) NOT NULL,
+    Modelo VARCHAR(80) NOT NULL,
+    Placa VARCHAR(7) NOT NULL UNIQUE,
+    KM_atual INT,
+    Cor VARCHAR(40),
+    ID_Cliente INT NOT NULL,
+    FOREIGN KEY (ID_Cliente)
+        REFERENCES Cliente(ID_Cliente),
+    INDEX idx_veiculo_cliente (ID_Cliente)
+);
+
+**ORDEM DE SERVICO**
+
+CREATE TABLE Ordem_Servico (
+    Numero_OS INT AUTO_INCREMENT PRIMARY KEY,
+    Data_entrada DATETIME NOT NULL,
+    Data_prevista DATETIME,
+    Status_OS VARCHAR(30) NOT NULL,
+    Defeito_relatado TEXT,
+    Diagnostico_Tecnico TEXT,
+    Prazo_garantia DATE,
+    Validade_orcamento DATE,
+    Forma_pagamento VARCHAR(30),
+    Preco_total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
+    ID_Veiculo INT NOT NULL,
+    FOREIGN KEY (ID_Veiculo)
+        REFERENCES Veiculo(ID_Veiculo),
+    INDEX idx_os_veiculo (ID_Veiculo),
+    INDEX idx_os_status (Status_OS),
+    INDEX idx_os_data_entrada (Data_entrada)
+);
+
+**PECA**
+
+CREATE TABLE Peca (
+    ID_Peca INT AUTO_INCREMENT PRIMARY KEY,
+    Preco_Custo DECIMAL(10,2) NOT NULL,
+    Preco_Venda DECIMAL(10,2) NOT NULL,
+    Estoque_Minimo INT NOT NULL DEFAULT 0,
+    Quantidade_Estoque INT NOT NULL DEFAULT 0,
+    Codigo_Referencia VARCHAR(50) UNIQUE,
+    Descricao_Peca VARCHAR(150) NOT NULL,
+    INDEX idx_peca_descricao (Descricao_Peca)
+);
+
+**SERVICO**
+
+CREATE TABLE Servico (
+    ID_Servico INT AUTO_INCREMENT PRIMARY KEY,
+    Nome_Servico VARCHAR(100) NOT NULL,
+    Preco_Padrao DECIMAL(10,2) NOT NULL,
+    Descricao_Servico TEXT,
+    INDEX idx_servico_nome (Nome_Servico)
+);
+
+**ITEM_OS_SERVICO**
+
+CREATE TABLE Item_OS_Servico (
+    ID_Item_Servico INT AUTO_INCREMENT PRIMARY KEY,
+    Quantidade INT NOT NULL,
+    Preco_Unitario DECIMAL(10,2) NOT NULL,
+    Sub_Total DECIMAL(10,2) NOT NULL,
+    Numero_OS INT NOT NULL,
+    ID_Servico INT NOT NULL,
+    FOREIGN KEY (Numero_OS)
+        REFERENCES Ordem_Servico(Numero_OS),
+    FOREIGN KEY (ID_Servico)
+        REFERENCES Servico(ID_Servico),
+    INDEX idx_item_servico_os (Numero_OS),
+    INDEX idx_item_servico_servico (ID_Servico)
+);
+
+**Índices por entidade**
+
+|Entidade       |Índices propostos                         |Finalidade                                                                      |
+|---------------|------------------------------------------|--------------------------------------------------------------------------------|
+|Cliente        |PK e CPF único                            |Identificar clientes e evitar CPF duplicado                                     |
+|Veiculo        |PK, placa única e ID_Cliente              |Localizar motocicletas pela placa e consultar veículos de um cliente            |
+|Ordem_Servico  |PK, ID_Veiculo, Status_OS, Data_entrada   |Consultar ordens por veículo, status e data                                     |
+|Peca           |PK, código de referência único e descrição|Identificar peças e facilitar buscas no cadastro                                |
+|Servico        |PK e nome do serviço                      |Identificar serviços e facilitar pesquisas pelo nome                            |
+|Item_OS_Servico|PK, Numero_OS e ID_Servico                |Consultar os serviços de uma OS e localizar as ordens relacionadas a um serviço |
 
 **11.5 Log de acesso**
 
+O log será representado por uma tabela denominada Log_Acesso, com os seguintes atributos:
+
+|Atributo        |Descrição                                                             |Tipo físico            |
+|----------------|----------------------------------------------------------------------|-----------------------|
+|ID_Log          |Identificador único do registro de log                                |INT, PK, AUTO_INCREMENT|
+|Data_Hora       |Data e horário da operação                                            |DATETIME               |
+|Operacao        |Tipo de ação realizada, como consulta, inclusão, alteração ou exclusão|VARCHAR(30)            |
+|Entidade        |Nome da tabela ou categoria de dados afetada                          |VARCHAR(50)            |
+|ID_Registro     |Identificador do registro afetado, quando aplicável                   |INT                    |
+|Resultado       |Resultado da operação, como sucesso ou falha                          |VARCHAR(20)            |
+|Origem          |Identificação da origem da operação, quando disponível                |VARCHAR(100)           |
+
+O mecanismo permitirá registrar operações relevantes realizadas sobre clientes, veículos, ordens de serviço, peças e serviços. O período de retenção dos logs deverá ser definido conforme a finalidade do registro e os requisitos legais aplicáveis.
 
 **11.6 Controle de acesso e LGPD**
 
