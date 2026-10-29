@@ -401,7 +401,7 @@ O projeto contempla as seguintes entidades principais:
 * **VEICULO:** armazena placa, modelo, marca, ano, cor e quilometragem da motocicleta.
 * **ORDEM_SERVICO:** registra a entrada da motocicleta, o defeito relatado, o diagnóstico, o status e as informações de atendimento.
 * **PECA:** mantém o cadastro de peças, referências comerciais, custos, preços e quantidades em estoque.
-* **ITEM_OS_PECA:** entidade associativa que relaciona as ordens de serviço às peças utilizadas, registrando quantidade, preço de custo e preço de venda.
+  
 * **ITEM_OS_SERVICO:** entidade associativa que relaciona as ordens de serviço aos serviços realizados, registrando quantidade, preço unitário e subtotal.
 
 **Relacionamentos e cardinalidades**
@@ -410,8 +410,7 @@ Os relacionamentos do modelo representam as associações entre as entidades e d
 
 * **CLIENTE e VEICULO — Rel:** um cliente pode estar relacionado a zero ou vários veículos, enquanto cada veículo está relacionado a exatamente um cliente.
 * **VEICULO e ORDEM_SERVICO — Gera:** um veículo pode gerar zero ou várias ordens de serviço, enquanto cada ordem de serviço está vinculada a exatamente um veículo.
-* **ORDEM_SERVICO e ITEM_OS_PECA — Contém:** uma ordem de serviço pode conter zero ou vários itens de peças, enquanto cada item de peça pertence a exatamente uma ordem de serviço.
-* **ITEM_OS_PECA e PECA:** cada item de peça está relacionado a exatamente uma peça, enquanto uma peça pode estar presente em zero ou vários itens de ordens de serviço.
+* **ORDEM_SERVICO e PECA — Contém:** uma ordem de serviço pode conter zero ou várias peças, enquanto cada peça pertence a exatamente uma ordem de serviço.
 * **ORDEM_SERVICO e ITEM_OS_SERVICO — Contém:** uma ordem de serviço pode conter zero ou vários itens de serviços, enquanto cada item de serviço pertence a exatamente uma ordem de serviço.
 * **ITEM_OS_SERVICO e SERVICO:** cada item de serviço está relacionado a exatamente um serviço do catálogo, enquanto um serviço pode estar presente em zero ou vários itens de ordens de serviço.
 
@@ -490,19 +489,6 @@ Armazena o catálogo de serviços oferecidos pela oficina.
 |Nome_Servico     |Nome do serviço         |VARCHAR(100)  |-      |Sim          |Não pode ficar vazio|
 |Preco_Padrao     |Preço padrão do serviço |DECIMAL(10,2) |-	  |Sim          |> ou = a zero       |
 |Descricao_Servico|Descrição do serviço    |TEXT          |-	  |Não          |-                   |
-
-**ITEM_OS_PECA**
-
-Relaciona uma ordem de serviço às peças utilizadas, permitindo registrar quantidades e valores específicos para cada atendimento.
-
-| Atributo   | Descrição                     	| Tipo (MySQL) | Chave | Obrigatório | Regra/Restrição        | 
-|------------|----------------------------------|--------------|-------|-------------|------------------------|
-|ID_Item_Peca|Identificador do item de peça     |INT           |PK     |Sim		     |AUTO_INCREMENT          |
-|Quantidade  |Quantidade de peças utilizadas    |INT           |-      |Sim          |Maior que zero          |
-|Preco_Custo |Custo unitário da peça no registro|DECIMAL(10,2) |-	   |Não          |> ou = a zero           |
-|Preco_Venda |Preço unitário de venda           |DECIMAL(10,2) |-	   |Não          |> ou = a zero           |
-|Numero_OS   |Ordem de serviço relacionada      |INT           |FK	   |Sim          |Referencia ORDEM_SERVICO|
-|ID_Peca     |Peça utilizada                    |INT           |FK	   |Sim          |Referencia PECA         |
 
 **ITEM_OS_SERVICO**
 
