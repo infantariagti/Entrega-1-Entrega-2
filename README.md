@@ -401,7 +401,7 @@ O projeto contempla as seguintes entidades principais:
 * **VEICULO:** armazena placa, modelo, marca, ano, cor e quilometragem da motocicleta.
 * **ORDEM_SERVICO:** registra a entrada da motocicleta, o defeito relatado, o diagnóstico, o status e as informações de atendimento.
 * **PECA:** mantém o cadastro de peças, referências comerciais, custos, preços e quantidades em estoque.
-  
+* **SERVICO:** armazena o cadastro dos serviços oferecidos, incluindo seus nomes, preços padrão e descrições.
 * **ITEM_OS_SERVICO:** entidade associativa que relaciona as ordens de serviço aos serviços realizados, registrando quantidade, preço unitário e subtotal.
 
 **Relacionamentos e cardinalidades**
