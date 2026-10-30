@@ -22,4 +22,4 @@
 - **Escopo do sistema:** O escopo do sistema centraliza e organiza as informações gerais da oficina, tambem faz parte o cadastro de clientes e motocicletas, o gerenciamento de atendimentos e ordens de serviço, o controle de orçamentos, serviços realizados, estoque de peças, pagamentos e garantias.
 - **Justificativa da escolha:** notável que maioria dos casos a comunicação do mecânico e o cliente é limitada, devido ao excesso e escasso tempo do mecânico para manusear seu tempo com agendas, o objetivo é equilibrar o atendimento de forma que o cliente consiga fazer um autoatendimento enquanto reduz o trabalho do mecânico de parar de trabalhar em outro veículo para prestar atenção ao novo cliente e seu problema.
 - **Evidências da organização:** Av. Primavera de Caiena, 28 - Parque Santa Madalena, São Paulo - SP, 03981-010 - site: "https://paramim.my.canva.site/jackson-moto-pe-as" e rede social "https://www.instagram.com/jacksonmotosoficial?utm_source=qr&igsh=MXY5eDA4a2NyOTV1bQ%3D%3D"
-- **Responsável pela organização:** **Jackson(Proprietario) - 11 96067-0539 **
+- **Responsável pela organização:** **Jackson(Proprietario) - 11 96067-0539**
