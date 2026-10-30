@@ -527,98 +527,67 @@ Versão: O ambiente de banco de dados utilizado no projeto é o MySQL 8.0.46.
 
 **11.4 Especificação física**
 
-**Expressão formal e tipos físicos:**
+**Expressão formal:**
 
-A expressão formal do modelo físico é representada por comandos SQL CREATE TABLE, que definem as entidades, seus atributos, tipos de dados, chaves primárias, chaves estrangeiras e restrições de integridade. As definições apresentadas correspondem à estrutura física proposta para implementação no MySQL 8.0.46.
+As entidades são representadas por seus nomes e respectivos atributos, com a identificação das chaves primárias:
 
-**CLIENTE**
+* **CLIENTE:** (ID_Cliente, Nome, CPF, Telefone, Endereco, Logradouro, Bairro).
 
-CREATE TABLE Cliente (
-    ID_Cliente INT AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(100) NOT NULL,
-    CPF CHAR(11) UNIQUE,
-    Telefone VARCHAR(20),
-    Endereco VARCHAR(200),
-    Logradouro VARCHAR(150),
-    Bairro VARCHAR(100)
-);
+* **VEICULO:** (ID_Veiculo, Ano, Marca, Modelo, Placa, KM_atual, Cor).
 
-**VEICULO**
+* **ORDEM_SERVICO:** (Numero_OS, Data_entrada, Data_prevista, Status_OS, Defeito_relatado, Diagnostico_Tecnico, Prazo_garantia, Validade_orcamento, Forma_pagamento, Preco_total).
 
-CREATE TABLE Veiculo (
-    ID_Veiculo INT AUTO_INCREMENT PRIMARY KEY,
-    Ano YEAR,
-    Marca VARCHAR(60) NOT NULL,
-    Modelo VARCHAR(80) NOT NULL,
-    Placa VARCHAR(7) NOT NULL UNIQUE,
-    KM_atual INT,
-    Cor VARCHAR(40),
-    ID_Cliente INT NOT NULL,
-    FOREIGN KEY (ID_Cliente)
-        REFERENCES Cliente(ID_Cliente),
-    INDEX idx_veiculo_cliente (ID_Cliente)
-);
+* **PECA:** (ID_Peca, Preco_Custo, Preco_Venda, Estoque_Minimo, Quantidade_Estoque, Codigo_Referencia, Descricao_Peca).
 
-**ORDEM DE SERVICO**
+* **SERVICO:** (ID_Servico, Nome_Servico, Preco_Padrao, Descricao_Servico).
 
-CREATE TABLE Ordem_Servico (
-    Numero_OS INT AUTO_INCREMENT PRIMARY KEY,
-    Data_entrada DATETIME NOT NULL,
-    Data_prevista DATETIME,
-    Status_OS VARCHAR(30) NOT NULL,
-    Defeito_relatado TEXT,
-    Diagnostico_Tecnico TEXT,
-    Prazo_garantia DATE,
-    Validade_orcamento DATE,
-    Forma_pagamento VARCHAR(30),
-    Preco_total DECIMAL(10,2) NOT NULL DEFAULT 0.00,
-    ID_Veiculo INT NOT NULL,
-    FOREIGN KEY (ID_Veiculo)
-        REFERENCES Veiculo(ID_Veiculo),
-    INDEX idx_os_veiculo (ID_Veiculo),
-    INDEX idx_os_status (Status_OS),
-    INDEX idx_os_data_entrada (Data_entrada)
-);
+* **ITEM_OS_SERVICO:** (ID_Item_Servico, Quantidade, Preco_Unitario, Sub_Total).
 
-**PECA**
+**Tipos físicos:**
 
-CREATE TABLE Peca (
-    ID_Peca INT AUTO_INCREMENT PRIMARY KEY,
-    Preco_Custo DECIMAL(10,2) NOT NULL,
-    Preco_Venda DECIMAL(10,2) NOT NULL,
-    Estoque_Minimo INT NOT NULL DEFAULT 0,
-    Quantidade_Estoque INT NOT NULL DEFAULT 0,
-    Codigo_Referencia VARCHAR(50) UNIQUE,
-    Descricao_Peca VARCHAR(150) NOT NULL,
-    INDEX idx_peca_descricao (Descricao_Peca)
-);
+Os tipos abaixo são propostas para uma implementação no MySQL 8.0.46.
 
-**SERVICO**
-
-CREATE TABLE Servico (
-    ID_Servico INT AUTO_INCREMENT PRIMARY KEY,
-    Nome_Servico VARCHAR(100) NOT NULL,
-    Preco_Padrao DECIMAL(10,2) NOT NULL,
-    Descricao_Servico TEXT,
-    INDEX idx_servico_nome (Nome_Servico)
-);
-
-**ITEM_OS_SERVICO**
-
-CREATE TABLE Item_OS_Servico (
-    ID_Item_Servico INT AUTO_INCREMENT PRIMARY KEY,
-    Quantidade INT NOT NULL,
-    Preco_Unitario DECIMAL(10,2) NOT NULL,
-    Sub_Total DECIMAL(10,2) NOT NULL,
-    Numero_OS INT NOT NULL,
-    ID_Servico INT NOT NULL,
-    FOREIGN KEY (Numero_OS)
-        REFERENCES Ordem_Servico(Numero_OS),
-    FOREIGN KEY (ID_Servico)
-        REFERENCES Servico(ID_Servico),
-    INDEX idx_item_servico_os (Numero_OS),
-    INDEX idx_item_servico_servico (ID_Servico)
-);
+| Entidade       | Atributo               | Tipo Físico  | Descrição                                      |
+|----------------|------------------------|--------------|------------------------------------------------|
+| Cliente        | ID_Cliente             | INT          | Identificador único do cliente (PK)            |
+| Cliente        | Nome                   | VARCHAR(100) | Nome completo do cliente                       |
+| Cliente        | CPF                    | VARCHAR(14)  | CPF do cliente                                 |
+| Cliente        | Telefone               | VARCHAR(20)  | Telefone para contato                          |
+| Cliente        | Endereco               | VARCHAR(150) | Endereço do cliente                            |
+| Cliente        | Logradouro             | VARCHAR(100) | Rua, avenida ou tipo de via                    |
+| Cliente        | Bairro                 | VARCHAR(60)  | Bairro do cliente                              |
+| Veiculo        | ID_Veiculo             | INT          | Identificador único do veículo (PK)            |
+| Veiculo        | Ano                    | YEAR         | Ano de fabricação do veículo                   |
+| Veiculo        | Marca                  | VARCHAR(50)  | Marca da motocicleta                           |
+| Veiculo        | Modelo                 | VARCHAR(60)  | Modelo da motocicleta                          |
+| Veiculo        | Placa                  | VARCHAR(10)  | Placa de identificação do veículo              |
+| Veiculo        | KM_atual               | INT          | Quilometragem atual do veículo                 |
+| Veiculo        | Cor                    | VARCHAR(30)  | Cor da motocicleta                             |
+| Ordem_Servico  | Numero_OS              | INT          | Identificador único da OS (PK)                 |
+| Ordem_Servico  | Data_entrada           | DATETIME     | Data e horário de entrada do veículo           |
+| Ordem_Servico  | Data_prevista          | DATE         | Data prevista para conclusão do serviço        |
+| Ordem_Servico  | Status_OS              | VARCHAR(30)  | Situação atual da ordem de serviço             |
+| Ordem_Servico  | Defeito_relatado       | TEXT         | Problema informado pelo cliente                |
+| Ordem_Servico  | Diagnostico_Tecnico    | TEXT         | Diagnóstico realizado pelo mecânico            |
+| Ordem_Servico  | Prazo_garantia         | DATE         | Data de término da garantia                    |
+| Ordem_Servico  | Validade_orcamento     | DATE         | Data limite de validade do orçamento           |
+| Ordem_Servico  | Forma_pagamento        | VARCHAR(30)  | Forma de pagamento utilizada                   |
+| Ordem_Servico  | Preco_total            | DECIMAL(10,2)| Valor total da ordem de serviço                |
+| Peca           | ID_Peca                | INT          | Identificador único da peça (PK)               |
+| Peca           | Preco_Custo            | DECIMAL(10,2)| Valor de aquisição da peça                     |
+| Peca           | Preco_Venda            | DECIMAL(10,2)| Valor cobrado pela peça                        |
+| Peca           | Estoque_Minimo         | INT          | Quantidade mínima desejada em estoque          |
+| Peca           | Quantidade_Estoque     | INT          | Quantidade disponível em estoque               |
+| Peca           | Codigo_Referencia      | VARCHAR(50)  | Código de identificação da peça                |
+| Peca           | Descricao_Peca         | VARCHAR(150) | Descrição da peça                              |
+| Servico        | ID_Servico             | INT          | Identificador único do serviço (PK)            |
+| Servico        | Nome_Servico           | VARCHAR(100) | Nome do serviço oferecido                      |
+| Servico        | Preco_Padrao           | DECIMAL(10,2)| Preço padrão do serviço                        |
+| Servico        | Descricao_Servico      | TEXT         | Descrição do serviço                           |
+| Item_OS_Servico| ID_Item_Servico        | INT          | Identificador único do item (PK)               |
+| Item_OS_Servico| Quantidade             | INT          | Quantidade de serviços registrados             |
+| Item_OS_Servico| Preco_Unitario         | DECIMAL(10,2)| Valor unitário cobrado pelo serviço            |
+| Item_OS_Servico| Sub_Total              | DECIMAL(10,2)| Valor total do item de serviço                 |
 
 **Índices por entidade**
 
