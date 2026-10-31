@@ -130,12 +130,12 @@
 
 | Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
 | :---- | :---- | :---- |
-| Agendamento: capacidade diária / não comparecimento (ausente) | Não incluído; justificado na seção C. | Não há limite diário formalizado nem regra de não comparecimento. |
-| Entrega: moto não retirada no prazo (estadia) (ausente) | Não incluído; justificado na seção C. | Sem prazo fixo de reparo, não há regra de estadia. |
-| Compras: fornecedor e conferência (ausente) | Não incluído fornecedor formal. RF04 passa a registrar o recebimento de peças; RF11 entra como melhoria. | Compra direta com o distribuidor, sem prazo nem conferência. |
-| Pagamento: emissão de nota fiscal (ausente) | Não incluído; justificado na seção C. | A oficina não emite nota fiscal. |
-| Processos: recebimento de peças, estoque e garantia | RF04 reescrito (recebimento + soma ao estoque + garantia automática de 90 dias). | Cobre o processo apontado como ausente. |
-| Processos: compras e contas a pagar | RF11 incluído como melhoria. | Atende ao processo ausente.
+| Agendamento: capacidade diária / não comparecimento (ausente) | Não incluído como regra de negócio no modelo. | A oficina realiza agendamentos principalmente pelo WhatsApp, mas não possui limite diário formalizado nem política definida para não comparecimento. |
+| Entrega: moto não retirada no prazo (estadia) (ausente) | Não incluído como regra de negócio. | A oficina trabalha com previsão de até dois dias para reparos simples, enquanto serviços complexos não possuem prazo fixo. Não existe política formal de cobrança por permanência. |
+| Compras: fornecedor e conferência (ausente) | Não foi criada entidade FORNECEDOR. O RF04 foi detalhado para registrar o recebimento de peças e atualizar o estoque. | As compras são realizadas diretamente com distribuidores, sem processo formal de cadastro de fornecedores ou controle de prazo de entrega. |
+| Pagamento: emissão de nota fiscal (ausente) | Não incluído como funcionalidade do sistema. | Conforme informado no levantamento, a oficina não realiza emissão de nota fiscal em sua operação atual. |
+| Processos: recebimento de peças, estoque e garantia | RF04 foi detalhado para contemplar o recebimento de peças, atualização automática do estoque e registro de garantia de 90 dias. | RF04 foi detalhado para contemplar o recebimento de peças, atualização automática do estoque e registro de garantia de 90 dias. |
+| Processos: compras e contas a pagar | RF11 foi incluído como melhoria, permitindo registrar compras, valores, datas de vencimento e situação dos pagamentos. | A funcionalidade permite acompanhar despesas da oficina, valores pendentes e pagamentos realizados.
 
 &nbsp;
 
