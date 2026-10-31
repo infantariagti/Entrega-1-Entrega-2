@@ -22,8 +22,8 @@
 - **Justificativa da escolha:** notável que maioria dos casos a comunicação do mecânico e o cliente é limitada, devido ao excesso e escasso tempo do mecânico para manusear seu tempo com agendas, o objetivo é equilibrar o atendimento de forma que o cliente consiga fazer um autoatendimento  enquanto reduz o trabalho do mecânico de parar de trabalhar em outro veículo para prestar atenção ao novo cliente e seu problema.
 
 - **Evidências da organização:** Av. Primavera de Caiena, 28 - Parque Santa Madalena, São Paulo - SP, 03981-010 - 11 96067-0539 - Jackson 			
-<img width="900" height="1600" alt="Foto Jackson" src="https://github.com/user-attachments/assets/19115033-1747-478e-a2dc-d29909fad7c0" />" />
-<img width="900" height="1600" alt="Foto Jackson 2 jpeg " src="https://github.com/user-attachments/assets/50d1d8b0-ecd3-4f3d-b803-25857341477f" /> />
+<img width="900" height="1600" alt="Foto Jackson" src="https://github.com/user-attachments/assets/19115033-1747-478e-a2dc-d29909fad7c0" />
+<img width="900" height="1600" alt="Foto Jackson 2 jpeg " src="https://github.com/user-attachments/assets/50d1d8b0-ecd3-4f3d-b803-25857341477f" />
 
 
 ## 2. Processos de Negócio
