@@ -33,13 +33,13 @@ O RF11 foi incluído como melhoria para atender aos processos apontados como aus
 
 **Justificativo do itens apontados no modelo conceitual:**
 
-**Agendamento:** capacidade diária / não comparecimento	Agendamento	Ausente: o agendamento não se limita à entrega da moto, e não há regra formal de não comparecimento relatada. A capacidade do local é de 30 motos, mas não há limite diário de agendamentos formalizado.
+**Agendamento capacidade diária / não comparecimento:** O agendamento não se limita à entrega da moto, e não há regra formal de não comparecimento relatada. A capacidade do local é de 30 motos, mas não há limite diário de agendamentos formalizado.
 
-**Moto não retirada no prazo (estadia) Entrega Ausente:** o prazo de reparo é de até 2 dias, e problemas complexos ficam sem prazo definido. Sem prazo fixo, não há como estabelecer regra de estadia ou cobrança por permanência.
+**Moto não retirada no prazo (estadia) Entrega Ausente:** O prazo de reparo é de até 2 dias, e problemas complexos ficam sem prazo definido. Sem prazo fixo, não há como estabelecer regra de estadia ou cobrança por permanência.
 
-**Compra de peças: fornecedor e conferência	Compras	Ausente:** a compra é feita direto com o distribuidor, com a oficina comparecendo à loja ou ao local. Não há prazo de entrega nem fornecedor formal a controlar, logo não há regra de conferência de recebimento.
+**Compra de peças: fornecedor e conferência	Compras	Ausente:** A compra é feita direto com o distribuidor, com a oficina comparecendo à loja ou ao local. Não há prazo de entrega nem fornecedor formal a controlar, logo não há regra de conferência de recebimento.
 
-**Emissão de nota fiscal Pagamento Ausente:** a oficina não emite nota fiscal, pois considera o processo muito burocrático. A regra não se aplica à operação atual.
+**Emissão de nota fiscal Pagamento Ausente:** A oficina não emite nota fiscal, pois considera o processo muito burocrático. A regra não se aplica à operação atual.
 
 #### Conversão do Modelo Conceitual para o Modelo Lógico
 *(vale 7,5%)*
