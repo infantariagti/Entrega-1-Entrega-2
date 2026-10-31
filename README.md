@@ -25,11 +25,10 @@
 - **Responsável pela organização:** **Jackson(Proprietario) - 11 96067-0539**
 
 - **Ajustes nos apontamentos:**
-**5. Processos de negócio-**
-**RF04 -** Recebimento de Peças, Controle de Estoque e Garantia: Registrar o recebimento de peças (peça, quantidade e valor de custo), somando a quantidade ao saldo em estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS.
+- **5. Processos de negócio-**
+- **RF04 -** Recebimento de Peças, Controle de Estoque e Garantia: Registrar o recebimento de peças (peça, quantidade e valor de custo), somando a quantidade ao saldo em estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS.
 
-**RF11 -** Contas a Pagar (melhoria): Registrar as compras de peças e insumos/consumíveis (óleo, graxa, velas etc.) utilizados nos serviços da oficina, informando descrição, valor, data da compra, data de vencimento e situação (Pendente ou Pago), permitindo consultar os valores a pagar e os já quitados.
-
+- **RF11 -** Contas a Pagar (melhoria): Registrar as compras de peças e insumos/consumíveis (óleo, graxa, velas etc.) utilizados nos serviços da oficina, informando descrição, valor, data da compra, data de vencimento e situação (Pendente ou Pago), permitindo consultar os valores a pagar e os já quitados.
 O RF11 foi incluído como melhoria para atender aos processos apontados como ausentes (compra de peças e contas a pagar). Ele não altera o escopo do DER atual, pois a oficina opera com apenas dois atores (seção 8-D). Sua implementação futura exigirá a entidade CONTA_PAGAR, vinculada ao recebimento de peças.
 
 **Justificativo do itens apontados no modelo conceitual:**
