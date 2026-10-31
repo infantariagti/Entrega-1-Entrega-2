@@ -1,3 +1,4 @@
+
 # Entrega 2 — Modelo-Lógico, Implementação SQL e Apresentação Final
 
 ### Integrantes
@@ -98,7 +99,7 @@
 
 *O DER deve seguir a notação do **brModelo**, como no exemplo abaixo:*
 
-![Exemplo de DER na notação do brModelo](Exemplo_DER.png)
+<img width="1645" height="956" alt="DER" src="https://github.com/user-attachments/assets/5f6ded78-86b0-4c9d-ba9f-e68d783e8ca1" />
 
 | Elemento | Como aparece | No exemplo |
 | :---- | :---- | :---- |
