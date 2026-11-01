@@ -61,30 +61,48 @@
 - **Requisitos Funcionais:**
 | Código | Requisito |
 | :---- | :---- |
+
 | RF01 | Cadastrar cliente com nome, telefone/WhatsApp, CPF e endereço (logradouro, bairro). |
+
 | RF02 | Cadastrar moto vinculada a um cliente, com placa, marca, modelo, ano, cor e quilometragem. |
+
 | RF03 | Abrir e atualizar OS com data de entrada, defeito relatado, diagnóstico, status (Aguardando Aprovação, Em Manutenção, Pronta, Entregue) e previsão de entrega. |
+
 | RF04 | Registrar o recebimento de peças (peça, quantidade, valor de custo), somando ao saldo do estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS. |
+
 | RF05 | Cadastrar peças (nome, código/referência, custo, venda, quantidade em estoque, estoque mínimo) e baixar o saldo ao fechar a OS. |
+
 | RF06 | Lançar serviços (mão de obra) na OS, com quantidade e preço praticado. |
+
 | RF07 | Calcular o total do orçamento (peças + serviços) e permitir visualizar/imprimir para validação do cliente. |
+
 | RF08 | Registrar pagamento (Pix, dinheiro, cartão de débito ou crédito) e marcar a OS como paga. |
+
 | RF09 | Consultar o histórico de OS por placa ou por cliente. |
+
 | RF10 | Alertar quando peças de alto giro atingirem o estoque mínimo. |
+
 | RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). **[CONFERIR]** exige a entidade `CONTA_PAGAR` (ver nota na seção C). |
+
 - **Requisitos Não Funcionais:**
 | Código | Requisito |
 | :---- | :---- |
+
 | RNF01 | Usabilidade: interface simples; cadastro de atendimento em menos de 2 minutos. |
+
 | RNF02 | Desempenho: busca por cliente ou placa em menos de 2 segundos. |
+
 | RNF03 | Integridade: não excluir clientes ou motos com OS ativa ou histórico. |
+
 | RNF04 | Backup periódico (local ou nuvem). |
+
 | RNF05 | Compatibilidade: rodar em computador básico, via navegador. |
+
 | RNF06 | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul). |
 
   
-- **Levante os requisitos típicos do tipo de organização.** Assim como nos processos, é recomendável usar pesquisas e ferramentas de IA para descobrir quais requisitos funcionais e não funcionais são comuns em sistemas de organizações semelhantes e conferir se eles se aplicam à organização escolhida — o que pode exigir confirmação com o responsável. Registre esse uso de IA na seção 6\.  
-- **Justifique os requisitos prováveis não incluídos:** se um requisito comum nesse tipo de organização ficou de fora, explique por quê (ex.: a organização não realiza o processo correspondente, ou a necessidade não existe no porte dela).
+- **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utlizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF13	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.  
+- **Justifique os requisitos prováveis não incluídos:** O requisito RF20	Registrar o checklist de entrada da moto (avarias visíveis, itens deixados, nível de combustível, quilometragem), de acordo com mecanico esse processo não é verificado, apensa a análise e diagnostico, de acordo com as informações do cliente.
 
 *Na Entrega 1, os erros mais comuns foram: requisitos de um sistema diferente do que foi mapeado (ex.: cardápio por QR Code ou motor de recomendação, quando o processo real é o garçom anotar o pedido), problemas declarados sem nenhum requisito que os resolva e requisitos técnicos (autenticação por JWT, hospedagem em nuvem) listados como funcionais. Os requisitos devem corresponder aos processos de negócio descritos acima e cobrir todos os problemas declarados (`P1`, `P2`…).*
 
@@ -289,9 +307,47 @@ Para cada uso relevante de ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity
 
 | Item | O que registrar |
 | :---- | :---- |
-| **Ferramenta e etapa** | Qual IA foi usada e em qual parte do trabalho (ex.: normalização, geração da massa de dados, escrita de queries SQL, redação do relatório, preparação dos slides). |
-| **Motivação** | Por que o grupo recorreu à IA nesse ponto específico. |
-| **Prompt(s) utilizados** | Texto exato (ou muito próximo) do que foi perguntado/pedido à IA. |
+| **Ferramenta e etapa** | Qual IA foi usada e em qual parte do trabalho Claude IA(Anthropic) Normalização, levantamento de requisitos típicos em oficina mecânica |
+| **Motivação** | No ponto de levantamento de requisitos algumas informações básicas de controle de ordens de serviço básicas ou superior, mas levando em consideração na parte da entrevista |
+| **Prompt(s) utilizados** | Com base nos requisitos funcionais e não funcionais, teria outros requisitos a serem considerados, segue a seguir:    **Requisitos Funcionais:** | Código | Requisito | | :---- | :---- |
+
+| RF01 | Cadastrar cliente com nome, telefone/WhatsApp, CPF e endereço (logradouro, bairro). |
+
+| RF02 | Cadastrar moto vinculada a um cliente, com placa, marca, modelo, ano, cor e quilometragem. |
+
+| RF03 | Abrir e atualizar OS com data de entrada, defeito relatado, diagnóstico, status (Aguardando Aprovação, Em Manutenção, Pronta, Entregue) e previsão de entrega. |
+
+| RF04 | Registrar o recebimento de peças (peça, quantidade, valor de custo), somando ao saldo do estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS. |
+
+| RF05 | Cadastrar peças (nome, código/referência, custo, venda, quantidade em estoque, estoque mínimo) e baixar o saldo ao fechar a OS. |
+
+| RF06 | Lançar serviços (mão de obra) na OS, com quantidade e preço praticado. |
+
+| RF07 | Calcular o total do orçamento (peças + serviços) e permitir visualizar/imprimir para validação do cliente. |
+
+| RF08 | Registrar pagamento (Pix, dinheiro, cartão de débito ou crédito) e marcar a OS como paga. |
+
+| RF09 | Consultar o histórico de OS por placa ou por cliente. |
+
+| RF10 | Alertar quando peças de alto giro atingirem o estoque mínimo. |
+
+| RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). **[CONFERIR]** exige a entidade CONTA_PAGAR (ver nota na seção C). |
+
+    **Requisitos Não Funcionais:** | Código | Requisito | | :---- | :---- |
+
+| RNF01 | Usabilidade: interface simples; cadastro de atendimento em menos de 2 minutos. |
+
+| RNF02 | Desempenho: busca por cliente ou placa em menos de 2 segundos. |
+
+| RNF03 | Integridade: não excluir clientes ou motos com OS ativa ou histórico. |
+
+| RNF04 | Backup periódico (local ou nuvem). |
+
+| RNF05 | Compatibilidade: rodar em computador básico, via navegador. |
+
+| RNF06 | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul). |
+
+    **Levante os requisitos típicos do tipo de organização.** Assim como nos processos, é recomendável usar pesquisas e ferramentas de IA para descobrir quais requisitos funcionais e não funcionais são comuns em sistemas de organizações semelhantes e conferir se eles se aplicam à organização escolhida — o que pode exigir confirmação com o responsável. Registre esse uso de IA na seção 6\. |
 | **Resposta recebida** | Resumo ou trecho relevante da resposta da IA. |
 | **Fontes consultadas e verificadas** | Se a IA citou fontes/dados, quais foram checadas pelo grupo e como. |
 | **Trechos rejeitados ou corrigidos** | O que da resposta da IA foi descartado, editado ou corrigido manualmente (ex.: query SQL ajustada, dado fictício alterado), e por quê. |
