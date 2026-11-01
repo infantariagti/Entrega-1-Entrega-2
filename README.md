@@ -82,8 +82,7 @@
 
 | RF10 | Alertar quando peças de alto giro atingirem o estoque mínimo. |
 
-| RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). **[CONFERIR]** exige a entidade `CONTA_PAGAR` (ver nota na seção C). |
-
+| RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). |
 - **Requisitos Não Funcionais:**
 | Código | Requisito |
 | :---- | :---- |
