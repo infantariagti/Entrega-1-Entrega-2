@@ -83,6 +83,7 @@
 | RF10 | Alertar quando peças de alto giro atingirem o estoque mínimo. |
 
 | RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). |
+
 - **Requisitos Não Funcionais:**
 | Código | Requisito |
 | :---- | :---- |
@@ -99,9 +100,11 @@
 
 | RNF06 | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul). |
 
+|RN07 | Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência.|
+
   
-- **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utlizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF13	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.  
-- **Justifique os requisitos prováveis não incluídos:** O requisito RF20	Registrar o checklist de entrada da moto (avarias visíveis, itens deixados, nível de combustível, quilometragem), de acordo com mecanico esse processo não é verificado, apensa a análise e diagnostico, de acordo com as informações do cliente.
+- **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utlizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF07	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.  
+- **Justifique os requisitos prováveis não incluídos:** O requisito funcional RF12	Registrar o checklist de entrada da moto (avarias visíveis, itens deixados, nível de combustível, quilometragem), de acordo com mecanico esse processo não é verificado, apensa a análise e diagnostico, de acordo com as informações do cliente.
 
 *Na Entrega 1, os erros mais comuns foram: requisitos de um sistema diferente do que foi mapeado (ex.: cardápio por QR Code ou motor de recomendação, quando o processo real é o garçom anotar o pedido), problemas declarados sem nenhum requisito que os resolva e requisitos técnicos (autenticação por JWT, hospedagem em nuvem) listados como funcionais. Os requisitos devem corresponder aos processos de negócio descritos acima e cobrir todos os problemas declarados (`P1`, `P2`…).*
 
@@ -175,7 +178,7 @@
 - **1FN:** `endereco` + `logradouro` + `bairro` no mesmo cliente duplicam informação; ficar só com colunas atômicas. Peças e serviços não ficam dentro da OS (vão para as tabelas de itens).
 - **2FN:** nas tabelas de itens, `quantidade` e `preco_praticado` dependem da combinação OS + peça/serviço, e não só de um dos lados. Dados da peça (descrição, custo) ficam em PECA.
 - **3FN:** `preco_total` (soma dos itens), `validade_orcamento` (entrada + 10 dias) e `prazo_garantia` (saída + 90 dias) são calculáveis. Decidir: calcular em consulta/visão (3FN pura) ou guardar e justificar. O mesmo vale para `sub_total` em ITEM_OS_SERVICO. 
-- **Justificativa do processo:** *por que cada forma normal foi necessária no seu caso.*
+- **Justificativa do processo:** *Porque as tabelas se repetem na primeira tabela de normalização, na segunda tabela de normalização seria na parte de itens: quantidade e preco_unificado ficam em outra tabela e na terceira tabela de normalização seria calculáveis.*
 
 ### 1.5 Justificativas Técnicas das Decisões
 
@@ -305,7 +308,7 @@ Para cada uso relevante de ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity
 | Item | O que registrar |
 | :---- | :---- |
 | **Ferramenta e etapa** | Qual IA foi usada e em qual parte do trabalho Claude IA(Anthropic) Normalização, levantamento de requisitos típicos em oficina mecânica |
-| **Motivação** | No ponto de levantamento de requisitos algumas informações básicas de controle de ordens de serviço básicas ou superior, mas levando em consideração na parte da entrevista |
+| **Motivação** | No ponto de levantamento de requisitos algumas informações básicas de controle de ordens de serviço básicas ou superior, mas levando em consideração na parte da entrevista, ajustes de novos requisitos funcionais e não funcionais |
 | **Prompt(s) utilizados** | Com base nos requisitos funcionais e não funcionais, teria outros requisitos a serem considerados, segue a seguir: **Requisitos Funcionais:** 
  | Código | Requisito | | :---- | :---- | | RF01 | Cadastrar cliente com nome, telefone/WhatsApp, CPF e endereço (logradouro, bairro). |
 
@@ -379,10 +382,38 @@ Para cada uso relevante de ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity
 
 | RNF06 | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul). |
 
+Poderia reorganizar as informações do arquivo readme.md, coloquei mais informações porem ficou muito confuso.
+
     **Levante os requisitos típicos do tipo de organização.** Assim como nos processos, é recomendável usar pesquisas e ferramentas de IA para descobrir quais requisitos funcionais e não funcionais são comuns em sistemas de organizações semelhantes e conferir se eles se aplicam à organização escolhida — o que pode exigir confirmação com o responsável. Registre esse uso de IA na seção 6\. |
-| **Resposta recebida** | Resumo ou trecho relevante da resposta da IA. |
+| **Resposta recebida** | Resumo dos pontos a resolver no README:
+
+Problemas e porte: estavam com o texto repetido. Separei o porte em números e propus P1 a P5 como rascunho. Confirmem com o Jackson, pois cada problema precisa de ao menos uma consulta G no script.
+Agendamento: o README diz “presencial” e a E1 diz “WhatsApp”. Definam qual é o correto.
+Compras x RF11: compra de peças está como processo ausente, mas o RF11 registra compras. Ou entra a tabela CONTA_PAGAR no DER, ou o RF11 sai.
+Fotos: precisam ser JPG/PNG dentro do repositório, não no user-attachments. Vale também para o DER e o fluxograma.
+Entrevista: faltam participantes, data, local, foto, observação presencial e resumo do levantamento. O bloco já está pronto para preencher.
+Dicionário da E1: faltava ITEM_OS_PECA. A relação OS–peça é N:N com tabela associativa (já corrigido na seção 1.2).
+Normalização: preco_total, validade_orcamento, prazo_garantia e sub_total são calculáveis (3FN), e endereco duplica logradouro e bairro (1FN).
+Detalhes: CPF está como CHAR(11) e VARCHAR(14), data_prevista como DATETIME e DATE, e há referências a seções antigas (ex.: “seção 8-D”).
+IA: nomes e versões das ferramentas estão inconsistentes. Faltam registrar os usos na massa de dados, na normalização e nas consultas SQL.
+Os requisitos adicionais ampliam o sistema da oficina em três frentes.
+
+Funcionais (RF12 a RF24):
+
+Cadastros novos: fornecedores, mecânicos/funcionários e um catálogo de serviços com preço de tabela.
+Ordem de serviço: vínculo das peças usadas à OS, registro de aprovação do orçamento, cancelamento com motivo, desconto, pagamento parcial ou sinal, checklist de entrada da moto e comprovante para impressão.
+Estoque e garantia: histórico de movimentação do estoque e consulta de garantias vigentes, com aviso ao abrir nova OS.
+Gestão: relatórios (faturamento, contas a vencer, peças e serviços mais usados), controle de acesso por perfis e, de forma opcional, lembrete de revisão ao cliente.
+
+Não funcionais (RNF07 a RNF16):
+
+Segurança e privacidade: senhas com hash, adequação à LGPD (inativar cadastros em vez de excluir) e auditoria de quem alterou o quê.
+Confiabilidade dos dados: fechamento da OS como operação atômica, valores em DECIMAL(10,2), CPF e placa únicos no banco e backup com teste de restauração.
+Usabilidade e saída: tela responsiva para celular, formatos brasileiros (dd/mm/aaaa, R$) e exportação em PDF ou CSV.|
 | **Fontes consultadas e verificadas** | Se a IA citou fontes/dados, quais foram checadas pelo grupo e como. |
-| **Trechos rejeitados ou corrigidos** | O que da resposta da IA foi descartado, editado ou corrigido manualmente (ex.: query SQL ajustada, dado fictício alterado), e por quê. |
+| **Trechos rejeitados ou corrigidos** | Foi descartado as RF12 a RF24 funcionais e não funcionais RNF07 a RNF16 sugeridas pela IA, Porque escolhemos inserir dos requisitos sugeridos RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). ||
+RN07 | Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência.|
+pois estamos levando em consideração que o trabalho do mecanico e sua esposa.|
 | **Justificativa da escolha final** | Por que o grupo manteve, adaptou ou rejeitou o que a IA sugeriu. |
 | **Reflexão crítica** | Limites, vieses ou erros identificados no uso da IA nessa etapa (ex.: normalização incorreta sugerida pela IA, script SQL com erro de sintaxe, dado fictício incoerente com o volume real da organização). |
 
