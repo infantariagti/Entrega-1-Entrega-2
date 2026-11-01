@@ -186,8 +186,6 @@
 
 ### 1.6 Proposta de Arquitetura Analítica para BI e IA
 
-*(vale 7,5%)*
-
 - **Informações estratégicas** que podem ser extraídas dos dados para a gestão da organização.  
 - **Indicadores e métricas gerenciais** propostos (KPIs).  
 - **Potencial dos dados para BI:** como a estrutura apoia dashboards/relatórios.  
@@ -308,7 +306,42 @@ Para cada uso relevante de ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity
 | :---- | :---- |
 | **Ferramenta e etapa** | Qual IA foi usada e em qual parte do trabalho Claude IA(Anthropic) Normalização, levantamento de requisitos típicos em oficina mecânica |
 | **Motivação** | No ponto de levantamento de requisitos algumas informações básicas de controle de ordens de serviço básicas ou superior, mas levando em consideração na parte da entrevista |
-| **Prompt(s) utilizados** | Com base nos requisitos funcionais e não funcionais, teria outros requisitos a serem considerados, segue a seguir:    **Requisitos Funcionais:** | Código | Requisito | | :---- | :---- |
+| **Prompt(s) utilizados** | Com base nos requisitos funcionais e não funcionais, teria outros requisitos a serem considerados, segue a seguir: **Requisitos Funcionais:** 
+ | Código | Requisito | | :---- | :---- | | RF01 | Cadastrar cliente com nome, telefone/WhatsApp, CPF e endereço (logradouro, bairro). |
+
+| RF02 | Cadastrar moto vinculada a um cliente, com placa, marca, modelo, ano, cor e quilometragem. |
+
+| RF03 | Abrir e atualizar OS com data de entrada, defeito relatado, diagnóstico, status (Aguardando Aprovação, Em Manutenção, Pronta, Entregue) e previsão de entrega. |
+
+| RF04 | Registrar o recebimento de peças (peça, quantidade, valor de custo), somando ao saldo do estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS. |
+
+| RF05 | Cadastrar peças (nome, código/referência, custo, venda, quantidade em estoque, estoque mínimo) e baixar o saldo ao fechar a OS. |
+
+| RF06 | Lançar serviços (mão de obra) na OS, com quantidade e preço praticado. |
+
+| RF07 | Calcular o total do orçamento (peças + serviços) e permitir visualizar/imprimir para validação do cliente. |
+
+| RF08 | Registrar pagamento (Pix, dinheiro, cartão de débito ou crédito) e marcar a OS como paga. |
+
+| RF09 | Consultar o histórico de OS por placa ou por cliente. |
+
+| RF10 | Alertar quando peças de alto giro atingirem o estoque mínimo. |
+
+| RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). |
+
+    **Requisitos Não Funcionais:** | Código | Requisito | | :---- | :---- |
+
+| RNF01 | Usabilidade: interface simples; cadastro de atendimento em menos de 2 minutos. |
+
+| RNF02 | Desempenho: busca por cliente ou placa em menos de 2 segundos. |
+
+| RNF03 | Integridade: não excluir clientes ou motos com OS ativa ou histórico. |
+
+| RNF04 | Backup periódico (local ou nuvem). |
+
+| RNF05 | Compatibilidade: rodar em computador básico, via navegador. |
+
+| RNF06 | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul). |
 
 | RF01 | Cadastrar cliente com nome, telefone/WhatsApp, CPF e endereço (logradouro, bairro). |
 
