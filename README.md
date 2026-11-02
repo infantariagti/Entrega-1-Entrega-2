@@ -307,7 +307,7 @@ Para cada uso relevante de ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity
 
 | Item | O que registrar |
 | :---- | :---- |
-| **Ferramenta e etapa** | Qual IA foi usada e em qual parte do trabalho Claude IA(Anthropic) Normalização, levantamento de requisitos típicos em oficina mecânica |
+| **Ferramenta e etapa** | Qual IA foi usada e em qual parte do trabalho Gemini e Claude IA(Anthropic): Normalização, levantamento de requisitos típicos em oficina mecânica |
 | **Motivação** | No ponto de levantamento de requisitos algumas informações básicas de controle de ordens de serviço básicas ou superior, mas levando em consideração na parte da entrevista, ajustes de novos requisitos funcionais e não funcionais |
 | **Prompt(s) utilizados** | Com base nos requisitos funcionais e não funcionais, teria outros requisitos a serem considerados, segue a seguir: **Requisitos Funcionais:** 
  | Código | Requisito | | :---- | :---- | | RF01 | Cadastrar cliente com nome, telefone/WhatsApp, CPF e endereço (logradouro, bairro). |
