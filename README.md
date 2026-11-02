@@ -244,7 +244,7 @@ oficina.
 |defeito_relatado|Atômico/Simples, Monovalorado, Obrigatório|
 |diagnostico_tecnico|Atômico/Simples, Monovalorado, Opcional (na abertura)|
 |forma_pagamento|Atômico/Simples, Monovalorado, Opcional (no fechamento)|
-|preço_total|Derivado (Calculado: ∑▒"Peças" +∑▒"Serviços" )|
+|preço_total|Derivado (Calculado: "Peças" + "Serviços" )|
 |validade_orcamento|Derivado (Calculado: data_entrada + 10 dias)|
 |prazo_garantia|Derivado (Calculado: data_saida + 90 dias)|
 
