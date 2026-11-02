@@ -198,8 +198,10 @@
 
 | Problema ou KPI | Tabelas envolvidas | Consulta no script |
 | :---- | :---- | :---- |
-| *ex.: P1 — ruptura de estoque de bebidas* | *PRODUTO, MOVIMENTACAO\_ESTOQUE* | *G03* |
-| *ex.: ticket médio por ambiente* | *PEDIDO, ITEM\_PEDIDO, AMBIENTE* | *G05* |
+| *P1 — Faturamento Total Mensal* | *Soma dos pagamentos confirmados por mês* | | PAGAMENTO, ORDEM_SERVICO|  *G01* |
+| *P2 — Volume de OS Finalizadas por Semana* | *Contagem de OS com status "Entregue" por período* | ORDEM_SERVICO | | *G2* |
+| *P3 — Ruptura de Estoque (Peças Abaixo do Mínimo)* | *Contagem de peças cujo estoque atual é menor ou igual ao mínimo* | PECA | | *G03* |
+| *P4 — Ticket Médio por Ordem de Serviço* | *Faturamento total dividido pelo número de OS finalizadas no mês*| | ORDEM_SERVICO, ITEM_OS_SERVICO, ITEM_OS_PECA |  | *G04* |
 
 &nbsp;
 
@@ -384,6 +386,8 @@ Para cada uso relevante de ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity
 
 Poderia reorganizar as informações do arquivo readme.md, coloquei mais informações porem ficou muito confuso.
 
+Com base sobre o que é KPI, ajude a estruturar os arquivos anexados.
+
     **Levante os requisitos típicos do tipo de organização.** Assim como nos processos, é recomendável usar pesquisas e ferramentas de IA para descobrir quais requisitos funcionais e não funcionais são comuns em sistemas de organizações semelhantes e conferir se eles se aplicam à organização escolhida — o que pode exigir confirmação com o responsável. Registre esse uso de IA na seção 6\. |
 | **Resposta recebida** | Resumo dos pontos a resolver no README:
 
@@ -410,12 +414,13 @@ Não funcionais (RNF07 a RNF16):
 Segurança e privacidade: senhas com hash, adequação à LGPD (inativar cadastros em vez de excluir) e auditoria de quem alterou o quê.
 Confiabilidade dos dados: fechamento da OS como operação atômica, valores em DECIMAL(10,2), CPF e placa únicos no banco e backup com teste de restauração.
 Usabilidade e saída: tela responsiva para celular, formatos brasileiros (dd/mm/aaaa, R$) e exportação em PDF ou CSV.|
-| **Fontes consultadas e verificadas** | Se a IA citou fontes/dados, quais foram checadas pelo grupo e como. |
-| **Trechos rejeitados ou corrigidos** | Foi descartado as RF12 a RF24 funcionais e não funcionais RNF07 a RNF16 sugeridas pela IA, Porque escolhemos inserir dos requisitos sugeridos RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). ||
-RN07 | Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência.|
-pois estamos levando em consideração que o trabalho do mecanico e sua esposa.|
-| **Justificativa da escolha final** | Por que o grupo manteve, adaptou ou rejeitou o que a IA sugeriu. |
-| **Reflexão crítica** | Limites, vieses ou erros identificados no uso da IA nessa etapa (ex.: normalização incorreta sugerida pela IA, script SQL com erro de sintaxe, dado fictício incoerente com o volume real da organização). |
+
+
+
+| **Fontes consultadas e verificadas** | Validação cruzada com as entrevistas presenciais realizadas com o proprietário da oficina (Jackson).|
+| **Trechos rejeitados ou corrigidos** | Foram descartadas sugestões de automações complexas com IA generativa para diagnóstico de motos, visto que a oficina possui foco em atendimento prático e mecânica tradicional de pequeno porte.||
+| **Justificativa da escolha final** | Manteve-se apenas o escopo estritamente necessário para a realidade operacional e orçamentária dos 2 funcionários da oficina. |
+| **Reflexão crítica** | As ferramentas de IA auxiliam na formatação estrutural e lembrete de boas práticas de engenharia de software, mas a validação final com o negócio real é indispensável para evitar complexidade desnecessária. |
 
 &nbsp;
 
