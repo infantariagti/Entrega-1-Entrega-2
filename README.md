@@ -103,7 +103,7 @@
 |RN07 | Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência.|
 
   
-- **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utlizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF07	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.  
+- **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utilizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF07	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.  
 - **Justifique os requisitos prováveis não incluídos:** O requisito funcional RF12	Registrar o checklist de entrada da moto (avarias visíveis, itens deixados, nível de combustível, quilometragem), de acordo com mecanico esse processo não é verificado, apensa a análise e diagnostico, de acordo com as informações do cliente.
 
 *Na Entrega 1, os erros mais comuns foram: requisitos de um sistema diferente do que foi mapeado (ex.: cardápio por QR Code ou motor de recomendação, quando o processo real é o garçom anotar o pedido), problemas declarados sem nenhum requisito que os resolva e requisitos técnicos (autenticação por JWT, hospedagem em nuvem) listados como funcionais. Os requisitos devem corresponder aos processos de negócio descritos acima e cobrir todos os problemas declarados (`P1`, `P2`…).*
@@ -178,7 +178,7 @@
 - **1FN:** `endereco` + `logradouro` + `bairro` no mesmo cliente duplicam informação; ficar só com colunas atômicas. Peças e serviços não ficam dentro da OS (vão para as tabelas de itens).
 - **2FN:** nas tabelas de itens, `quantidade` e `preco_praticado` dependem da combinação OS + peça/serviço, e não só de um dos lados. Dados da peça (descrição, custo) ficam em PECA.
 - **3FN:** `preco_total` (soma dos itens), `validade_orcamento` (entrada + 10 dias) e `prazo_garantia` (saída + 90 dias) são calculáveis. Decidir: calcular em consulta/visão (3FN pura) ou guardar e justificar. O mesmo vale para `sub_total` em ITEM_OS_SERVICO. 
-- **Justificativa do processo:** *Porque as tabelas se repetem na primeira tabela de normalização, na segunda tabela de normalização seria na parte de itens: quantidade e preco_unificado ficam em outra tabela e na terceira tabela de normalização seria calculáveis.*
+- **Justificativa do processo:** *O processo de normalização é aplicado da seguinte forma: na 1ª Forma Normal, removem-se as tabelas e grupos que se repetem. Na 2ª Forma Normal, a seção de itens (contendo quantidade e preco_unificado) passa para uma nova tabela. Já na 3ª Forma Normal, eliminam-se os campos calculáveis para evitar redundância de dados.*
 
 ### 1.5 Justificativas Técnicas das Decisões
 
