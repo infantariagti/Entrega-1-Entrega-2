@@ -127,7 +127,6 @@
 | Entidade associativa | Retângulo associado a um relacionamento | `ITEM_OS_SERVICO` |
 | **Relacionamento** | losango | `Rel, Gera, Contém e Executa` |
 | **Cardinalidade mínima e máxima** | par `(mín, máx)` dos dois lados de cada relacionamento | `(0,N), (1,1) e (1,N)` |
-| **Autorrelacionamento** | losango ligado duas vezes à mesma entidade, cada lado com sua cardinalidade | `Rel 33`, em `Entity 3` |
 | **Atributo identificador (chave)** | círculo **preenchido** |  `ID_Cliente`, `Placa`, `Numero_OS`, `ID_Peça` e `ID_Serviço` |
 | **Identificador composto** | Mais de um atributo identificador na mesma entidade | Não utilizado no DER atual |
 | **Atributo comum** | círculo **vazio** | `Modelo`, `Marca`, `Ano`, `Cor` e `Preço_Padrão` |
