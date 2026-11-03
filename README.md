@@ -123,17 +123,20 @@
 
 | Elemento | Como aparece | No exemplo |
 | :---- | :---- | :---- |
-| **Entidade** | retângulo | `Entity 1` a `Entity 5` |
-| **Relacionamento** | losango | `Rel 33`, `Rel 34` |
-| **Cardinalidade mínima e máxima** | par `(mín, máx)` dos dois lados de cada relacionamento | `(0, 1)`, `(1, n)`, `(0, n)` |
+| **Entidade** | retângulo | `CLIENTE, VEICULO, ORDEM_SERVICO, PECA e SERVICO ` |
+| Entidade associativa | Retângulo associado a um relacionamento | ITEM_OS_SERVICO |
+| **Relacionamento** | losango | Rel, Gera, Contém e Executa |
+| **Cardinalidade mínima e máxima** | par `(mín, máx)` dos dois lados de cada relacionamento | `(0,N), (1,1) e (1,N)` |
 | **Autorrelacionamento** | losango ligado duas vezes à mesma entidade, cada lado com sua cardinalidade | `Rel 33`, em `Entity 3` |
-| **Atributo identificador (chave)** | círculo **preenchido** | `Chave 1`, `Chave 2`, `Chave 3`, `Chave 4` |
-| **Identificador composto** | mais de um círculo preenchido na mesma entidade (obrigatório) — ou mais de um atributo sublinhado, se os atributos estiverem listados no retângulo | `Chave 50` \+ `Chave 51`, em `Entity 5` |
-| **Atributo comum** | círculo **vazio** | `Attribute 10`, `Attribute 30` |
-| **Atributo multivalorado** | círculo vazio com a cardinalidade do atributo | `Attribute 11 (1, n)` |
-| **Atributo composto** *(representação gráfica opcional)* | atributo com seus próprios subatributos ligados a ele | `Attribute 21`, com `attr 211` e `attr 212` |
-| **Generalização/especialização** | triângulo ligando a entidade genérica às especializadas. **A indicação de totalidade e disjunção não é obrigatória** | `Entity 1` → `Entity 2` e `Entity 3` |
-| **Entidade associativa** | retângulo envolvendo o losango do relacionamento, que passa a poder se relacionar com outras entidades e ter atributos próprios | `Rel 53`, com `Attribute 530` |
+| **Atributo identificador (chave)** | círculo **preenchido** |  ID_Cliente, Placa, Numero_OS, ID_Peça e ID_Serviço |
+| **Identificador composto** | Mais de um atributo identificador na mesma entidade | Não utilizado no DER atual |
+| **Atributo comum** | círculo **vazio** | Modelo, Marca, Ano, Cor e Preço_Padrão |
+| **Atributo multivalorado** |  Círculo com cardinalidade máxima N  | `Defeito_Relatado e Diagnostico_Tecnico` |
+| **Atributo composto** *(representação gráfica opcional)* | Atributo com seus próprios subatributos | Endereço, composto por Logradouro e Bairro |
+| **Generalização/especialização** | Triângulo ligando entidades. **A indicação de totalidade e disjunção não é obrigatória** | Não utilizada no DER atual |
+| Autorrelacionamento | Losango ligado duas vezes à mesma entidade | Não utilizado no DER atual |
+
+**Observação:** A entidade associativa ITEM_OS_SERVICO permite registrar informações específicas de cada serviço executado em uma Ordem de Serviço, como quantidade, preço unitário e subtotal.
 
 &nbsp;
 
