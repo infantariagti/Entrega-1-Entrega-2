@@ -407,6 +407,3 @@ Resposta recebida: A IA converteu a tabela para Markdown, facilitando sua inclus
 | **Reflexão crítica** | Como informado estava com erros de sintaxe e ocasionava erros no script além de que algumas sugestões não faziam sentido e foram necessários pequenos ajustes |
 
 ---
-
-
-- 
