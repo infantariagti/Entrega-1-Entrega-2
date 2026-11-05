@@ -170,8 +170,6 @@ Emissão de nota fiscal	Pagamento	Ausente: a oficina não emite nota fiscal, poi
 
 **Caso A — mesma organização da Entrega 1**
 
-*Apresente o **DER conceitual revisado**, na notação descrita acima. A revisão parte da correção da Entrega 1 recebida pelo grupo — o DER e os demais itens acima. Para cada apontamento da correção, registre o que foi feito:*
-
 | Apontamento da correção da E1 | O que mudou no trabalho | Por quê |
 | :---- | :---- | :---- |
 | Agendamento: capacidade diária / não comparecimento (ausente) | Não incluído como regra de negócio no modelo. | A oficina realiza agendamentos principalmente pelo WhatsApp, mas não possui limite diário formalizado nem política definida para não comparecimento. |
@@ -182,8 +180,6 @@ Emissão de nota fiscal	Pagamento	Ausente: a oficina não emite nota fiscal, poi
 | Processos: compras e contas a pagar | RF11 foi incluído como melhoria, permitindo registrar compras, valores, datas de vencimento e situação dos pagamentos. | A funcionalidade permite acompanhar despesas da oficina, valores pendentes e pagamentos realizados.
 
 &nbsp;
-
-*Se o grupo discordar de algum apontamento e mantiver o modelo como estava, registre isso na tabela com a justificativa. Apontamento não citado na tabela é tratado como não corrigido.*
 
 ### 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
 
@@ -243,12 +239,12 @@ Software utilizado: brModelo 3.0 — elaboração do diagrama do Modelo Lógico 
 
 | Elemento | Como aparece | No exemplo |
 | :---- | :---- | :---- |
-| **Tabela** | retângulo com o nome da tabela no topo e uma linha por coluna | cliente, veiculo, ordem_servico, peca, servico e item_os_servico |
-| **Coluna** | nome da coluna, à esquerda, com o tipo de dado à direita | ID_Cliente — INT, Nome — VARCHAR, CPF — CHAR, Telefone — VARCHAR, Endereço — VARCHAR, Logradouro — VARCHAR e Bairro — VARCHAR, em cliente; ID_Veiculo — INT, Ano — INT, Marca — VARCHAR, Modelo — VARCHAR, Placa — VARCHAR, KM_atual — INT, ID_Cliente — INT e Cor — VARCHAR, em veiculo; Numero_OS — INT, Data_entrada — DATETIME, Data_prevista — DATETIME, Status_OS — VARCHAR, Defeito_relatado — VARCHAR, Diagnostico_Tecnico — VARCHAR, Prazo_garantia — DATE, Validade_orcamento — DATE, Forma_pagamento — VARCHAR, Preco_total — FLOAT e ID_Veiculo — INT, em ordem_servico; ID_Peca — INT, Preco_Custo — FLOAT, Preco_Venda — FLOAT, Estoque_Minimo — INT, Quantidade_Estoque — INT, Codigo_Referencia — VARCHAR e Descricao_Peca — VARCHAR, em peca; ID_Servico — INT, Nome_Servico — VARCHAR, Preco_Padrao — FLOAT e Descricao_Servico — VARCHAR, em servico; ID_Item_Servico — INT, Quantidade — INT, Preco_Unitario — FLOAT, Sub_Total — FLOAT, Numero_OS — INT e ID_Servico — INT, em item_os_servico. |
-| **Chave primária** | marca `PK` ao lado do tipo | ID_Cliente — PK INT, em cliente; ID_Veiculo — PK INT, em veiculo; Numero_OS — PK INT, em ordem_servico; ID_Peca — PK INT, em peca; ID_Servico — PK INT, em servico; ID_Item_Servico — PK INT, em item_os_servico|
-| **Chave estrangeira** | marca `FK` ao lado do tipo | ID_Cliente — FK INT, em veiculo; ID_Veiculo — FK INT, em ordem_servico; Numero_OS — FK INT, em item_os_servico; ID_Servico — FK INT, em item_os_servico |
-| **Coluna que é chave primária e estrangeira** | 	Não existe no modelo atual |
-| **Ligação entre tabelas** | linha entre a tabela da FK e a tabela referenciada, com a cardinalidade `(mín, máx)` em cada ponta | cliente — veiculo; veiculo — ordem_servico; ordem_servico — item_os_servico; servico — item_os_servico |
+| **Tabela** | Retângulo com o nome da tabela no topo e uma linha por coluna | `cliente`, `veiculo`, `ordem_servico`, `peca`, `servico` e `item_os_servico` |
+| **Coluna** | Nome da coluna, à esquerda, com o tipo de dado à direita | `ID_Cliente` — `INT`, `Nome` — `VARCHAR`, `CPF` — `CHAR`, `Telefone` — `VARCHAR`, `Endereço` — `VARCHAR`, `Logradouro` — `VARCHAR` e `Bairro` — `VARCHAR`, em `cliente`; `ID_Veiculo` — `INT`, `Ano` — `INT`, `Marca` — `VARCHAR`, `Modelo` — `VARCHAR`, `Placa` — `VARCHAR`, `KM_atual` — `INT`, `ID_Cliente` — `INT` e `Cor` — `VARCHAR`, em `veiculo`; `Numero_OS` — `INT`, `Data_entrada` — `DATETIME`, `Data_prevista` — `DATETIME`, `Status_OS` — `VARCHAR`, `Defeito_relatado` — `VARCHAR`, `Diagnostico_Tecnico` — `VARCHAR`, `Prazo_garantia` — `DATE`, `Validade_orcamento` — `DATE`, `Forma_pagamento` — `VARCHAR`, `Preco_total` — `FLOAT` e `ID_Veiculo` — `INT`, em `ordem_servico`; `ID_Peca` — `INT`, `Preco_Custo` — `FLOAT`, `Preco_Venda` — `FLOAT`, `Estoque_Minimo` — `INT`, `Quantidade_Estoque` — `INT`, `Codigo_Referencia` — `VARCHAR` e `Descricao_Peca` — `VARCHAR`, em `peca`; `ID_Servico` — `INT`, `Nome_Servico` — `VARCHAR`, `Preco_Padrao` — `FLOAT` e `Descricao_Servico` — `VARCHAR`, em `servico`; `ID_Item_Servico` — `INT`, `Quantidade` — `INT`, `Preco_Unitario` — `FLOAT`, `Sub_Total` — `FLOAT`, `Numero_OS` — `INT` e `ID_Servico` — `INT`, em `item_os_servico`. |
+| **Chave primária** | Marca `PK` ao lado do tipo | `ID_Cliente` — `PK INT`, em `cliente`; `ID_Veiculo` — `PK INT`, em `veiculo`; `Numero_OS` — `PK INT`, em `ordem_servico`; `ID_Peca` — `PK INT`, em `peca`; `ID_Servico` — `PK INT`, em `servico`; `ID_Item_Servico` — `PK INT`, em `item_os_servico`. |
+| **Chave estrangeira** | Marca `FK` ao lado do tipo | `ID_Cliente` — `FK INT`, em `veiculo`; `ID_Veiculo` — `FK INT`, em `ordem_servico`; `Numero_OS` — `FK INT`, em `item_os_servico`; `ID_Servico` — `FK INT`, em `item_os_servico`. |
+| **Coluna que é chave primária e estrangeira** | Não existe no modelo atual | Não existe no modelo atual. |
+| **Ligação entre tabelas** | Linha entre a tabela da FK e a tabela referenciada, com a cardinalidade `(mín, máx)` em cada ponta | `cliente` — `veiculo`; `veiculo` — `ordem_servico`; `ordem_servico` — `item_os_servico`; `servico` — `item_os_servico`. |
 
 &nbsp;
 
