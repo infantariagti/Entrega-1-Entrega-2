@@ -35,7 +35,7 @@
 
 - **Quem:**  Agata (Gerente) - Lucas Pereira Andre, Paulo Renato Sobral Da Silva (Grupo).
   
-- **Quando e onde:** 22/10/26  9h12/9h40 & 04/11/26  8h50/9h10 — Múltiplos clientes surgem antes da oficina abrir, agendamento presencialmente tudo feito a mão, onde o próprio cliente lembra o Mecânico de ser atendido, o atendimento funciona como uma fila, quem chega primeiro é atendido primeiro, mas em questão de problemas mais graves a uma certa prioridade do mecanico.
+- **Quando e onde:** 22/10/26-9h12/9h40 & 04/11/26-8h50/9h10 — Múltiplos clientes surgem antes da oficina abrir, agendamento presencialmente tudo feito a mão, onde o próprio cliente lembra o Mecânico de ser atendido, o atendimento funciona como uma fila, quem chega primeiro é atendido primeiro, mas em questão de problemas mais graves a uma certa prioridade do mecanico.
   
 - **Comprovação:**  https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico%2C-Implementação-SQL-e-Apresentação-Final/Foto%20-%20Jackson%20motopeças%201.jpg E https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico%2C-Implementação-SQL-e-Apresentação-Final/Foto%20-%20Jackson%20motopeças%202.jpg
   
@@ -55,11 +55,19 @@
 
 **Processos de negócio (todos os grupos)**
 
-*Apresente os **principais processos mapeados** na organização — ex.: cadastro de clientes/beneficiários/fiéis, controle de estoque ou doações, vendas ou arrecadação, emissão de pedidos ou solicitações, entregas ou distribuição, organização de eventos/rituais/mutirões.*
+**principais processos mapeados** na organização — A empresa não trabalha com sistema de cadastro, o controle de estoque é anotado tudo via WhatsApp. A venda das peças é incluso ao serviço prestado. A emissao de entrega e solicitações é manual, onde a gerente busca sozinha sites, contatos e endereços do comercio. Eles integram a venda de produtos ao serviço prestado da moto, sem distribuições. Nao ha organizações, eventos ou multirões.
 
-- **Levante os processos típicos do tipo de organização.** É recomendável usar pesquisas e ferramentas de IA para descobrir quais processos são comuns em organizações do mesmo tipo (ex.: o que toda pizzaria, ONG de doação de alimentos ou oficina mecânica costuma fazer) e conferir se eles existem na organização escolhida. Isso pode exigir **uma nova visita à organização** para confirmar como cada processo funciona lá. Registre esse uso de IA na seção 6\.  
-- **Inclua os processos que existem na organização**, mesmo os que não estão ligados aos problemas declarados — o banco de dados reúne todos os dados da organização (ver *Escopo do sistema* acima).  
-- **Justifique os processos prováveis não incluídos:** se um processo comum nesse tipo de organização ficou de fora (ex.: compras de fornecedores, cancelamentos, escala da equipe), explique por quê — por exemplo, a organização não o realiza, ou ele é feito por terceiros.
+- **Levante os processos típicos do tipo de organização.** Triagem e inspeção inicial do veículo, diagnóstico técnico do problema, cotação de peças e aprovação do orçamento com o cliente, execução de serviços rápidos de rotina e reparos complexos, controle e organização física do pátio da oficina, compra de peças sob demanda com fornecedores parceiros, e o teste final de qualidade seguido da entrega do veículo.
+- **Inclua os processos que existem na organização** Recebe mensagens do cliente via WhatsApp: Cliente entra em contanto com a oficina pedindo informações a respeito dos procedimentos a serem realizados com a motocicleta
+Agendamento via WhatsApp: O processo de agendamento é feito por WhatsApp a partir de mensagens (registo principal de agendamento da empresa em questão)
+Recebimento da motocicleta: Cliente leva a motocicleta até a oficina como conversado no WhatsApp
+Inspeção da motocicleta: Mecânico realiza a inspeção previa conforme problemas relatados pelo cliente
+Orçamento: Identificação dos serviços necessários, peças e valores.
+Aprovação do orçamento: Autorização do cliente para execução dos serviços.
+Combina quando vai ser retirado: Realiza a conversa via WhatsApp para informar ao cliente uma data e horário prevista para finalização do serviço
+Execução do serviço: Realização da manutenção ou reparo pelos mecânicos.
+Finalização e entrega: Conferência do serviço, pagamento e devolução da motocicleta ao cliente.
+- **Justifique os processos prováveis não incluídos:** raramente a casos de desistência do cliente devido a alta demanda de motos ja agendadas.
 
 **Requisitos (todos os grupos)**
 
