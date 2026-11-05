@@ -397,17 +397,12 @@ Confiabilidade dos dados: fechamento da OS como operação atômica, valores em 
 Usabilidade e saída: tela responsiva para celular, formatos brasileiros (dd/mm/aaaa, R$) e exportação em PDF ou CSV.|
 
 
-
 | **Fontes consultadas e verificadas** | Validação cruzada com as entrevistas presenciais realizadas com o proprietário da oficina (Jackson).|
 | **Trechos rejeitados ou corrigidos** | Foram descartadas sugestões de automações complexas com IA generativa para diagnóstico de motos, visto que a oficina possui foco em atendimento prático e mecânica tradicional de pequeno porte.||
 | **Justificativa da escolha final** | Manteve-se apenas o escopo estritamente necessário para a realidade operacional e orçamentária dos 2 funcionários da oficina. |
 | **Reflexão crítica** | As ferramentas de IA auxiliam na formatação estrutural e lembrete de boas práticas de engenharia de software, mas a validação final com o negócio real é indispensável para evitar complexidade desnecessária. |
 
 &nbsp;
-
-*Se o grupo não usou nenhuma ferramenta de IA em alguma dessas etapas, declare isso explicitamente.*
-
-**Uso de IA observado e não declarado será penalizado.**
 
 Ferramenta utilizada: ChatGPT (GPT-6).
 
@@ -424,7 +419,16 @@ Prompt: “Me dê em Markdown para colocar direto no GitHub no README.”
 Resposta recebida: A IA converteu a tabela para Markdown, facilitando sua inclusão no GitHub.
 
 
-
+| Item | O que registrar |
+| :---- | :---- |
+| **Ferramenta e etapa** | ChatGPT (GPT-6)  e massa de dados, e selects  |
+| **Motivação** | Para gerar a quantidade necessária de testes é necessário linhas extensas |
+| **Prompt(s) utilizados** | considerando que "A empresa lucra entre R$10-16k com porte pequeno com apenas 2 funcionários e por dia variando entre 10 a 20 motos para conserto e um resultado de 6 a 12 motos finalizadas por dia com problemas simples. Agendamento presencial com teste do veículo para trabalho." preciso de - Volume de registros **coerente com a realidade da organização** e Variedade e quantidade coerentes com a organização  |
+| **Resposta recebida** | Quer uma massa de dados que represente uma oficina funcionando de verdade, considerando o porte, o movimento diário e as características da Jackson Moto Peças. Eu sugiro representar aproximadamente 30 dias de operação, usando dados fictícios distribuídos ao longo desse período. |
+| **Fontes consultadas e verificadas** |-------------------------- |
+| **Trechos rejeitados ou corrigidos** | Selects de conferencia foram todos descartados, não estava de acordo com o solicitado e alguns estava dando erro  |
+| **Justificativa da escolha final** | Como informado é necessário linhas extensas para os testes, mantivemos a resposta com alguns ajustes pois fez sentido dentro do proposto |
+| **Reflexão crítica** | Como informado estava com erros de sintaxe e ocasionava erros no script além de que algumas sugestões não faziam sentido e foram necessários pequenos ajustes |
 
 ---
 
