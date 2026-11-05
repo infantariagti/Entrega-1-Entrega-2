@@ -239,9 +239,7 @@ Emissão de nota fiscal	Pagamento	Ausente: a oficina não emite nota fiscal, poi
 
 ## 2\. Modelo Lógico Relacional
 
-*(diagrama separado — vale 10% na Dimensão Procedimental)*
-
-O modelo lógico deve seguir a **notação visual do brModelo** para o modelo lógico, como no exemplo abaixo. Informe no README **em qual software ou aplicativo ele foi criado**.
+Software utilizado: brModelo 3.0 — elaboração do diagrama do Modelo Lógico Relacional.
 
 ![Exemplo de modelo lógico na notação do brModelo](Exemplo_Logico.png)
 
@@ -421,7 +419,7 @@ Resposta recebida: A IA converteu a tabela para Markdown, facilitando sua inclus
 
 | Item | O que registrar |
 | :---- | :---- |
-| **Ferramenta e etapa** | ChatGPT (GPT-6)  e massa de dados, e selects  |
+| **Ferramenta e etapa** | ChatGPT (GPT-6), massa de dados e selects  |
 | **Motivação** | Para gerar a quantidade necessária de testes é necessário linhas extensas |
 | **Prompt(s) utilizados** | considerando que "A empresa lucra entre R$10-16k com porte pequeno com apenas 2 funcionários e por dia variando entre 10 a 20 motos para conserto e um resultado de 6 a 12 motos finalizadas por dia com problemas simples. Agendamento presencial com teste do veículo para trabalho." preciso de - Volume de registros **coerente com a realidade da organização** e Variedade e quantidade coerentes com a organização  |
 | **Resposta recebida** | Quer uma massa de dados que represente uma oficina funcionando de verdade, considerando o porte, o movimento diário e as características da Jackson Moto Peças. Eu sugiro representar aproximadamente 30 dias de operação, usando dados fictícios distribuídos ao longo desse período. |
