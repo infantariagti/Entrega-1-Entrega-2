@@ -35,7 +35,7 @@
 
 - **Quem:**  Agata (Gerente) - Lucas Pereira Andre, Paulo Renato Sobral Da Silva (Grupo).
   
-- **Quando e onde:** 22/10/26-9h12/9h40 & 04/11/26-8h50/9h10 — Múltiplos clientes surgem antes da oficina abrir, agendamento presencialmente tudo feito a mão, onde o próprio cliente lembra o Mecânico de ser atendido, o atendimento funciona como uma fila, quem chega primeiro é atendido primeiro, mas em questão de problemas mais graves a uma certa prioridade do mecanico.
+- **Quando e onde:** 22/10/26-9h12/9h40 & 04/11/26-8h50/9h10 — Múltiplos clientes surgem antes da oficina abrir, agendamento presencialmente tudo feito a mão, onde o próprio cliente lembra o Mecânico de ser atendido, o atendimento funciona como uma fila, quem chega primeiro é atendido primeiro, mas em questão de problemas mais graves, a uma certa prioridade do mecanico.
   
 - **Comprovação:**  https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico%2C-Implementação-SQL-e-Apresentação-Final/Foto%20-%20Jackson%20motopeças%201.jpg E https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico%2C-Implementação-SQL-e-Apresentação-Final/Foto%20-%20Jackson%20motopeças%202.jpg
   
