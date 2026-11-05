@@ -21,7 +21,7 @@
   
 - **Contexto e porte:** A empresa lucra entre R$10-16k com porte pequeno com apenas 2 funcionários e por dia variando entre 10 a 20 motos para conserto e um resultado de 6 a 12 motos finalizadas por dia com problemas simples. Agendamento presencial com teste do veículo para trabalho.
   
-- **Problemas e necessidades identificados:** A empresa lucra entre R$10-16k com porte pequeno com apenas 2 funcionários e por dia variando entre 10 a 20 motos para conserto e um resultado de 6 a 12 motos finalizadas por dia com problemas simples. Agendamento presencial com teste do veículo para trabalho.
+- **Problemas e necessidades identificados:** Ausência de comunicação flexível entre funcionário e cliente, necessitando de um suporte de controle para gerenciamento da fila de espera dos clientes e seus veículos.
   
 - **Escopo do sistema:** O escopo do sistema centraliza e organiza as informações gerais da oficina, tambem faz parte o cadastro de clientes e motocicletas, o gerenciamento de atendimentos e ordens de serviço, o controle de orçamentos, serviços realizados, estoque de peças, pagamentos e garantias.
   
@@ -268,56 +268,18 @@ As **demais restrições de integridade** — obrigatoriedade (`NOT NULL`), unic
 
 ## 3\. Script SQL Completo
 
-*(arquivo `.sql` — vale 12% na Dimensão Procedimental)*
-
-O script completo é **um arquivo no formato `.sql` disponível no repositório**, de preferência numa pasta chamada **`docs`** (ex.: `docs/script.sql`), com link no README. Script colado só no README, em PDF, em imagem ou em outro formato não é aceito.
-
-**SGBD:** MySQL — o disponível no laboratório ou outra instalação equivalente a que o grupo tenha acesso. O script deve executar no MySQL.
-
-O script deve conter, nesta ordem lógica:
-
-1. `CREATE DATABASE`  
-2. `CREATE TABLE` (todas as tabelas, com tipos de dados adequados)  
-3. **Constraints** (PK, FK, `NOT NULL`, `UNIQUE`, `CHECK` etc.)  
-4. `INSERT INTO` (carga da massa de dados — ver seção 4\)  
-5. `SELECT` com `JOIN` (consultas que cruzam múltiplas tabelas)  
-6. `UPDATE`  
-7. `DELETE`  
-8. **Consultas gerenciais** (que respondem perguntas de gestão, ex.: faturamento/arrecadação por período, número de atendimentos/beneficiários)  
-9. **Consultas de auditoria** (que verificam consistência/integridade dos dados)
-
-Cada **consulta gerencial** e cada **consulta de auditoria** deve ter um cabeçalho em comentário com um código (`G01`, `G02`… para gerenciais; `A01`, `A02`… para auditoria), a pergunta que ela responde em português e o que ela atende:
-
-```sql
--- G03 — Quais bebidas estão abaixo do estoque mínimo hoje?
--- Atende: P1 (ruptura de estoque de bebidas)
-SELECT ...
-
--- A02 — Existe pedido registrado sem nenhum item?
--- Verifica: RN04 (todo pedido tem ao menos um item)
-SELECT ...
-```
+**SGBD:** MySQL — https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico,-Implementação-SQL-e-Apresentação-Final/docs/script.sql
 
 &nbsp;
-
-- **Consultas gerenciais** respondem aos problemas declarados e aos KPIs da seção 1.6 — pelo menos uma por problema declarado e por KPI.  
-- **Consultas de auditoria** verificam regras de negócio, citando o código da regra (`RNxx`) que cada uma confere.  
-- Essas mesmas consultas são as usadas na demonstração da apresentação final (seção 7).
-
-*Teste o script do zero (banco vazio) antes de entregar, para garantir que ele executa sem erros.*
 
 ---
 
 ## 4\. Massa de Dados
 
-*(incluída no script ou em arquivo separado — parte da nota de Implementação SQL, 12%)*
+(Massa de dados incluída junto ao script - https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico,-Implementação-SQL-e-Apresentação-Final/docs/script.sql)
 
-Se a massa de dados ficar em arquivo separado, ele deve seguir a mesma regra do script: **um arquivo no formato `.sql` no repositório**, de preferência na pasta **`docs`** (ex.: `docs/massa_de_dados.sql`), com link no README.
-
-- **Dados reais da organização (nomes de clientes, fiéis, beneficiários, doadores, valores reais etc.) não devem ser utilizados, em respeito à privacidade dessas informações.** A massa de dados deve ser **fictícia**, mas **coerente com as operações modeladas** (mesmos tipos de processo, volumes e regras observados na organização real).  
 - Volume de registros **coerente com a realidade da organização** (nada de 3 linhas de exemplo — mas também nada artificialmente inflado sem sentido).  
 - **Explique como o volume real da organização** — os números informados em *Contexto e porte* (seção 1.1), como clientes ativos, pedidos por mês, atendimentos por semana, itens no estoque — **justifica a quantidade de registros de cada tabela** da massa de dados.  
-- Dados consistentes o suficiente para validar os processos organizacionais modelados (ex.: pedidos que referenciam clientes e produtos existentes, ou doações que referenciam doadores e campanhas existentes).  
 - **Variedade e quantidade coerentes com a organização, para que os testes sejam possíveis:** os dados devem cobrir as situações reais — não só o caso comum, mas também pedidos cancelados, clientes sem compras, produtos abaixo do estoque mínimo, pagamentos em formas diferentes, registros em períodos diferentes. Sem essa variedade, as consultas gerenciais e de auditoria (seção 3\) não têm o que mostrar: uma consulta de produtos abaixo do estoque mínimo que retorna vazio não demonstra nada.  
 - **Documente o uso de LLMs** para gerar essa massa de dados na seção 6 (**Uso de Inteligência Artificial**), incluindo ferramentas, prompts e ajustes feitos manualmente.
 
