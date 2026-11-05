@@ -35,7 +35,7 @@
 
 - **Quem:**  Agata (Gerente) - Lucas Pereira Andre, Paulo Renato Sobral Da Silva (Grupo).
   
-- **Quando e onde:** 22/10/26-9h12/9h40 & 04/11/26-8h50/9h10 — Múltiplos clientes surgem antes da oficina abrir, agendamento presencialmente tudo feito a mão, onde o próprio cliente lembra o Mecânico de ser atendido, o atendimento funciona como uma fila, quem chega primeiro é atendido primeiro, mas em questão de problemas mais graves, a uma certa prioridade do mecanico.
+- **Quando e onde:** 22/10/26-9h12/9h40 & 04/11/26-8h50/9h10 — Múltiplos clientes surgem antes da oficina abrir, agendamento presencialmente tudo feito a mão, onde o próprio cliente lembra o Mecânico de ser atendido, o atendimento funciona como uma fila, quem chega primeiro é atendido primeiro, mas a prioridade é dada a pedidos rapidos, como troca de oleo e corrente, problemas graves é deixado pra depois pra evitar acumulo de demanda pequena.
   
 - **Comprovação:**  https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico%2C-Implementação-SQL-e-Apresentação-Final/Foto%20-%20Jackson%20motopeças%201.jpg E https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico%2C-Implementação-SQL-e-Apresentação-Final/Foto%20-%20Jackson%20motopeças%202.jpg
   
@@ -55,7 +55,7 @@
 
 **Processos de negócio (todos os grupos)**
 
-**principais processos mapeados** na organização — A empresa não trabalha com sistema de cadastro, o controle de estoque é anotado tudo via WhatsApp. A venda das peças é incluso ao serviço prestado. A emissao de entrega e solicitações é manual, onde a gerente busca sozinha sites, contatos e endereços do comercio. Eles integram a venda de produtos ao serviço prestado da moto, sem distribuições. Nao ha organizações, eventos ou multirões.
+**principais processos mapeados** na organização — A empresa não trabalha com sistema de cadastro, o controle de estoque é anotado tudo via WhatsApp. A venda das peças é incluso ao serviço prestado. A emissao de entrega e solicitações é feita pelo gerente que tem um entregador freelancer, A gerente busca sozinha sites, contatos e endereços do comercio. Eles integram a venda de produtos ao serviço prestado da moto caso o cliente não houver a peça especifica, em caso do cliente e a oficina não ter a peça, fica em aguardo do cliente ate que a oficina consiga a peça. Nao ha organizações, eventos ou multirões.
 
 - **Levante os processos típicos do tipo de organização.** Triagem e inspeção inicial do veículo, diagnóstico técnico do problema, cotação de peças e aprovação do orçamento com o cliente, execução de serviços rápidos de rotina e reparos complexos, controle e organização física do pátio da oficina, compra de peças sob demanda com fornecedores parceiros, e o teste final de qualidade seguido da entrega do veículo.
 - 
