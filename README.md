@@ -18,18 +18,27 @@
 **Caracterização da organização (todos os grupos)**
 
 - **Nome e natureza da organização:** Jackson Moto Peças, Oficina Mecânica
+  
 - **Contexto e porte:** A empresa lucra entre R$10-16k com porte pequeno com apenas 2 funcionários e por dia variando entre 10 a 20 motos para conserto e um resultado de 6 a 12 motos finalizadas por dia com problemas simples. Agendamento presencial com teste do veículo para trabalho.
+  
 - **Problemas e necessidades identificados:** A empresa lucra entre R$10-16k com porte pequeno com apenas 2 funcionários e por dia variando entre 10 a 20 motos para conserto e um resultado de 6 a 12 motos finalizadas por dia com problemas simples. Agendamento presencial com teste do veículo para trabalho.
+  
 - **Escopo do sistema:** O escopo do sistema centraliza e organiza as informações gerais da oficina, tambem faz parte o cadastro de clientes e motocicletas, o gerenciamento de atendimentos e ordens de serviço, o controle de orçamentos, serviços realizados, estoque de peças, pagamentos e garantias.
+  
 - **Justificativa da escolha:** notável que maioria dos casos a comunicação do mecânico e o cliente é limitada, devido ao excesso e escasso tempo do mecânico para manusear seu tempo com agendas, o objetivo é equilibrar o atendimento de forma que o cliente consiga fazer um autoatendimento enquanto reduz o trabalho do mecânico de parar de trabalhar em outro veículo para prestar atenção ao novo cliente e seu problema.
+  
 - **Evidências da organização:** Av. Primavera de Caiena, 28 - Parque Santa Madalena, São Paulo - SP, 03981-010 - site: "https://paramim.my.canva.site/jackson-moto-pe-as" e rede social "https://www.instagram.com/jacksonmotosoficial?utm_source=qr&igsh=MXY5eDA4a2NyOTV1bQ%3D%3D" (fotos de evidências anexadas dentro do repositorio)
+  
 - **Responsável pela organização:** **Jackson(Proprietario) - 11 96067-0539**
 
 **Relato da entrevista (todos os grupos)**
 
 - **Quem:**  Agata (Gerente) - Lucas Pereira Andre, Paulo Renato Sobral Da Silva (Grupo).
+  
 - **Quando e onde:** 22/10/26  9h12/9h40 & 04/11/26  8h50/9h10 — Múltiplos clientes surgem antes da oficina abrir, agendamento presencialmente tudo feito a mão, onde o próprio cliente lembra o Mecânico de ser atendido, o atendimento funciona como uma fila, quem chega primeiro é atendido primeiro, mas em questão de problemas mais graves a uma certa prioridade do mecanico.
+  
 - **Comprovação:**  https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico%2C-Implementação-SQL-e-Apresentação-Final/Foto%20-%20Jackson%20motopeças%201.jpg E https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico%2C-Implementação-SQL-e-Apresentação-Final/Foto%20-%20Jackson%20motopeças%202.jpg
+  
 - **O que foi levantado:** - **Perguntas:** 1Como funciona o agendamento, 2como é tratado a prioridade de conserto das motos, 3oque a empresa foca de serviço, 4quantas pessoas são na empresa, 5oque faz quando não é possivel consertar a moto no dia, 6falta de peça na oficina, 7emite nota fiscal, 8como funciona o pedido de produto pra oficina, 9quantas motos chegam por dia, **Respostas:** 1Normalmente vem presencialmente ou antecipa por mensagem via WhatsApp, 2depende do problema da moto sendo rápido ou demorado mas a prioridade é se vai funcionar, 3a empresa foca em troca de óleo, retifica de motor, relação e pastilhas de freio e motor em geral, 4apenas duas a esposa do mecânico como gerente e o mecânico como dono, 5o mecanico deixa na garagem a moto e se for um problema grave a moto na garagem ate for consertada, 6a gerente pesquisa baseando-se na moto e faz o pedido, 7Nao(não citou porque), 8A gerente pesquisa fontes e locais baratos ou mais compatível com a moto, 9entre 40 a 60 motos por dia. **visitas novas na empresa:** 30/10/26 mas não houve entrevista, . O levantamento completo fica em **um arquivo Markdown (`.md`) à parte no repositório**, com link no README — **recomenda-se fortemente** colocá-lo numa pasta chamada **`levantamento`** (ex.: `levantamento/levantamento.md`). Esse arquivo é um **texto organizado, escrito pelo grupo**, sobre o que foi levantado — **não** é um vídeo ou áudio da entrevista, nem a transcrição crua de formulários ou de perguntas e respostas. **No README, apresente um resumo do levantamento.**
 
 **Nível de detalhe — processos, requisitos e regras de negócio (todos os grupos)**
@@ -54,7 +63,7 @@
 
 **Requisitos (todos os grupos)**
 
-**Requisitos Funcionais:**
+-**Requisitos Funcionais:**
 
 | Código | Requisito                                                                                                                                                                                       |
 | :----  | :----                                                                                                                                                                                           |
@@ -70,7 +79,7 @@
 | RF10   | Alertar quando peças de alto giro atingirem o estoque mínimo.                                                                                                                                   |
 | RF11   | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago).                                                               |
 
-**Requisitos Não Funcionais:**
+-**Requisitos Não Funcionais:**
 
 | Código | Requisito                                                                                       |
 | :----  | :----                                                                                           |
@@ -82,11 +91,10 @@
 | RNF06  | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul).           |
 | RN07   | Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência.|
 
-  
-- **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utilizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF07	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.  
-- **Justifique os requisitos prováveis não incluídos:** O requisito funcional RF12	Registrar o checklist de entrada da moto (avarias visíveis, itens deixados, nível de combustível, quilometragem), de acordo com mecanico esse processo não é verificado, apensa a análise e diagnostico, de acordo com as informações do cliente.
 
-*Na Entrega 1, os erros mais comuns foram: requisitos de um sistema diferente do que foi mapeado (ex.: cardápio por QR Code ou motor de recomendação, quando o processo real é o garçom anotar o pedido), problemas declarados sem nenhum requisito que os resolva e requisitos técnicos (autenticação por JWT, hospedagem em nuvem) listados como funcionais. Os requisitos devem corresponder aos processos de negócio descritos acima e cobrir todos os problemas declarados (`P1`, `P2`…).*
+- **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utilizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF07	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.
+
+- **Justifique os requisitos prováveis não incluídos:** O requisito funcional RF12	Registrar o checklist de entrada da moto (avarias visíveis, itens deixados, nível de combustível, quilometragem), de acordo com mecanico esse processo não é verificado, apenas a análise e diagnostico, de acordo com as informações do cliente.
 
 **Regras de negócio (todos os grupos)**
 
