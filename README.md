@@ -105,8 +105,6 @@ O requisito funcional RF12	Registrar o checklist de entrada da moto (avarias vis
 
 **Regras de negócio (todos os grupos)**
 
-## 4. Regras de Negócio
-
 - **Regras Operacionais**
   
 RN01 - Execução mediante aprovação: Uma Ordem de Serviço (OS) só pode ter seu status alterado para "Em Manutenção" após a autorização e validação explícita do cliente sobre o orçamento gerado.
