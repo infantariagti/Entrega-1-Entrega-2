@@ -152,7 +152,7 @@ VALUES
 (2, 150.00, 300.00, 4, 4),
 (1, 120.00, 120.00, 5, 5);
 
-**SELECT**
+--SELECT
 
 -- CONSULTA 01: CLIENTES E SEUS VEÍCULOS
 
@@ -194,7 +194,7 @@ INNER JOIN ordem_servico os
 INNER JOIN servico s
     ON ios.id_servico = s.id_servico;
 
-**UPDATE**
+--UPDATE
 
 -- ATUALIZAÇÃO DA QUANTIDADE DE ESTOQUE DE UMA PEÇA
 	
@@ -208,7 +208,7 @@ UPDATE ordem_servico
 SET status_os = 'Concluída'
 WHERE numero_os = 3;
 
-**DELETE**
+--DELETE
 
 -- EXCLUSÃO DO CLIENTE DE TESTE
 
