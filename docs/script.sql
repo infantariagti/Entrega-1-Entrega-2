@@ -69,88 +69,313 @@ create table item_os_servico (
 
 -- Massa de Dados e INCERT INTO
 
--- CLIENTES
+CREATE TEMPORARY TABLE tmp_numeros (
+    n INT NOT NULL PRIMARY KEY
+);
 
-INSERT INTO cliente (nome, cpf, telefone, endereco, logradouro, bairro) VALUES
-('Carlos Henrique', '12345678901', '11987654321', 'Rua A, 100', 'Rua A', 'São Mateus'),
-('Marcos Oliveira', '23456789012', '11987654322', 'Rua B, 200', 'Rua B', 'Itaquera'),
-('Roberto Santos', '34567890123', '11987654323', 'Rua C, 300', 'Rua C', 'Cidade Tiradentes'),
-('André Ferreira', '45678901234', '11987654324', 'Rua D, 400', 'Rua D', 'São Mateus'),
-('Cliente Teste', '56789012345', '11987654325', 'Rua E, 500', 'Rua E', 'Itaquera');
+INSERT INTO tmp_numeros (n)
+SELECT
+    1 + u.d + (d.d * 10) + (c.d * 100) + (m.d * 1000)
+FROM
+    (SELECT 0 AS d UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+     UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) u
+CROSS JOIN
+    (SELECT 0 AS d UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+     UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) d
+CROSS JOIN
+    (SELECT 0 AS d UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+     UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) c
+CROSS JOIN
+    (SELECT 0 AS d UNION ALL SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4
+     UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9) m
+WHERE
+    1 + u.d + (d.d * 10) + (c.d * 100) + (m.d * 1000) <= 1300;
+    
+    INSERT INTO cliente
+(nome, cpf, telefone, endereco, logradouro, bairro)
+SELECT
+    CONCAT('Cliente ', LPAD(n, 3, '0')),
+    LPAD(10000000000 + n, 11, '0'),
+    CONCAT('119', LPAD(n, 8, '0')),
+    CONCAT('Rua ', n, ', ', 100 + n),
+    CONCAT('Rua ', n),
+    CASE MOD(n, 5)
+        WHEN 0 THEN 'São Mateus'
+        WHEN 1 THEN 'Itaquera'
+        WHEN 2 THEN 'Cidade Tiradentes'
+        WHEN 3 THEN 'São Miguel'
+        ELSE 'Iguatemi'
+    END
+FROM tmp_numeros
+WHERE n <= 400;
 
--- VEÍCULOS
-
-INSERT INTO veiculo (ano, marca, modelo, placa, km_atual, id_cliente, cor) VALUES
-(2020, 'Honda', 'CG 160', 'ABC1234', 25000, 1, 'Preta'),
-(2022, 'Yamaha', 'Fazer 250', 'DEF5678', 18000, 2, 'Azul'),
-(2019, 'Honda', 'Biz 125', 'GHI9012', 32000, 3, 'Vermelha'),
-(2023, 'Honda', 'CB 300F', 'JKL3456', 12000, 4, 'Cinza');
-
--- PEÇAS
+INSERT INTO veiculo
+(ano, marca, modelo, placa, km_atual, id_cliente, cor)
+SELECT
+    2015 + MOD(n, 11),
+    CASE MOD(n, 4)
+        WHEN 0 THEN 'Honda'
+        WHEN 1 THEN 'Yamaha'
+        WHEN 2 THEN 'Suzuki'
+        ELSE 'Dafra'
+    END,
+    CASE MOD(n, 6)
+        WHEN 0 THEN 'CG 160'
+        WHEN 1 THEN 'Biz 125'
+        WHEN 2 THEN 'Fazer 250'
+        WHEN 3 THEN 'Factor 150'
+        WHEN 4 THEN 'CB 300F'
+        ELSE 'NMax 160'
+    END,
+    CONCAT('ABC', LPAD(n, 4, '0')),
+    MOD(n * 137, 90000),
+    MOD(n - 1, 400) + 1,
+    CASE MOD(n, 5)
+        WHEN 0 THEN 'Preta'
+        WHEN 1 THEN 'Vermelha'
+        WHEN 2 THEN 'Azul'
+        WHEN 3 THEN 'Branca'
+        ELSE 'Cinza'
+    END
+FROM tmp_numeros
+WHERE n <= 450;
 
 INSERT INTO peca
-(preco_custo, preco_venda, estoque_minimo, quantidade_estoque, codigo_referencia, descricao_peca)
-VALUES
-(35.00, 55.00, 5, 12, 'PEC001', 'Filtro de óleo'),
-(80.00, 120.00, 3, 2, 'PEC002', 'Pastilha de freio'),
-(25.00, 40.00, 5, 15, 'PEC003', 'Vela de ignição'),
-(120.00, 180.00, 2, 1, 'PEC004', 'Kit relação'),
-(45.00, 70.00, 4, 8, 'PEC005', 'Cabo de embreagem');
+(preco_custo, preco_venda, estoque_minimo,
+ quantidade_estoque, codigo_referencia, descricao_peca)
+SELECT
+    15 + MOD(n * 13, 180),
+    15 + MOD(n * 13, 180) + 10 + MOD(n * 7, 80),
+    3 + MOD(n, 6),
+    CASE MOD(n, 10)
+        WHEN 0 THEN 0
+        WHEN 1 THEN 1
+        WHEN 2 THEN 2
+        ELSE 8 + MOD(n * 3, 30)
+    END,
+    CONCAT('PEC', LPAD(n, 3, '0')),
+    CONCAT('Peça para motocicleta ', LPAD(n, 3, '0'))
+FROM tmp_numeros
+WHERE n <= 50;
 
--- SERVIÇOS
-
-INSERT INTO servico (nome_servico, preco_padrao, descricao_servico) VALUES
-('Troca de óleo', 75.00, 'Substituição do óleo do motor'),
-('Revisão geral', 220.00, 'Inspeção geral dos componentes da motocicleta'),
-('Regulagem de freios', 90.00, 'Ajuste do sistema de freios'),
-('Troca de relação', 150.00, 'Substituição do conjunto de transmissão'),
-('Regulagem de válvulas', 120.00, 'Ajuste das válvulas do motor');
-
--- ORDENS DE SERVIÇO
+INSERT INTO servico
+(nome_servico, preco_padrao, descricao_servico)
+SELECT
+    CASE n
+        WHEN 1 THEN 'Troca de óleo'
+        WHEN 2 THEN 'Revisão geral'
+        WHEN 3 THEN 'Regulagem de freios'
+        WHEN 4 THEN 'Troca de relação'
+        WHEN 5 THEN 'Regulagem de válvulas'
+        WHEN 6 THEN 'Troca de vela'
+        WHEN 7 THEN 'Ajuste de embreagem'
+        WHEN 8 THEN 'Troca de pastilhas'
+        WHEN 9 THEN 'Limpeza de carburador'
+        WHEN 10 THEN 'Revisão elétrica'
+        WHEN 11 THEN 'Troca de cabos'
+        ELSE 'Teste e diagnóstico'
+    END,
+    CASE n
+        WHEN 1 THEN 75.00
+        WHEN 2 THEN 220.00
+        WHEN 3 THEN 90.00
+        WHEN 4 THEN 150.00
+        WHEN 5 THEN 120.00
+        WHEN 6 THEN 45.00
+        WHEN 7 THEN 80.00
+        WHEN 8 THEN 70.00
+        WHEN 9 THEN 100.00
+        WHEN 10 THEN 130.00
+        WHEN 11 THEN 65.00
+        ELSE 50.00
+    END,
+    CONCAT('Serviço de manutenção número ', n)
+FROM tmp_numeros
+WHERE n <= 12;
 
 INSERT INTO ordem_servico
 (data_entrada, data_prevista, status_os, defeito_relatado,
  diagnostico_tecnico, prazo_garantia, validade_orcamento,
  forma_pagamento, preco_total, id_veiculo)
-VALUES
-('2026-10-20 08:00:00', '2026-10-20 17:00:00', 'Concluída',
- 'Motor precisando de troca de óleo',
- 'Óleo do motor substituído',
- '2027-01-20', '2026-10-30', 'Pix', 150.00, 1),
 
-('2026-10-21 09:00:00', '2026-10-22 17:00:00', 'Concluída',
- 'Revisão e barulho nos freios',
- 'Revisão realizada e freios regulados',
- '2027-01-21', '2026-10-31', 'Dinheiro', 220.00, 2),
+SELECT
+    TIMESTAMP(
+        DATE_ADD(
+            '2026-08-03',
+            INTERVAL (
+                FLOOR((n - 1) * 65 / 990)
+                + FLOOR(FLOOR((n - 1) * 65 / 990) / 5) * 2
+            ) DAY
+        ),
+        MAKETIME(8 + MOD(n, 9), MOD(n * 7, 60), 0)
+    ),
 
-('2026-10-23 10:00:00', '2026-10-23 16:00:00', 'Em manutenção',
- 'Freio apresentando problemas',
- 'Necessária regulagem do sistema',
- '2027-01-23', '2026-11-02', NULL, 90.00, 3),
+    DATE_ADD(
+        TIMESTAMP(
+            DATE_ADD(
+                '2026-08-03',
+                INTERVAL (
+                    FLOOR((n - 1) * 65 / 990)
+                    + FLOOR(FLOOR((n - 1) * 65 / 990) / 5) * 2
+                ) DAY
+            ),
+            MAKETIME(8 + MOD(n, 9), MOD(n * 7, 60), 0)
+        ),
+        INTERVAL (1 + MOD(n, 3)) DAY
+    ),
 
-('2026-10-25 08:30:00', '2026-10-26 17:00:00', 'Concluída',
- 'Problema na transmissão',
- 'Conjunto de relação substituído',
- '2027-01-25', '2026-11-04', 'Cartão', 300.00, 4),
+    CASE
+        WHEN n <= 594 THEN 'Concluída'
+        WHEN n <= 744 THEN 'Em Manutenção'
+        WHEN n <= 864 THEN 'Aguardando Aprovação'
+        WHEN n <= 930 THEN 'Aguardando Nova Aprovação'
+        ELSE 'Cancelada'
+    END,
 
-('2026-10-27 11:00:00', '2026-10-28 17:00:00', 'Aguardando aprovação',
- 'Motor necessita de regulagem',
- NULL,
- '2027-01-27', '2026-11-06', NULL, 120.00, 1);
+    CASE MOD(n, 6)
+        WHEN 0 THEN 'Problema no sistema de freios'
+        WHEN 1 THEN 'Motor apresentando ruídos'
+        WHEN 2 THEN 'Necessidade de troca de óleo'
+        WHEN 3 THEN 'Problema na transmissão'
+        WHEN 4 THEN 'Dificuldade na partida'
+        ELSE 'Revisão e manutenção preventiva'
+    END,
 
--- ITENS DAS ORDENS DE SERVIÇO
+    CASE
+        WHEN n <= 744 THEN 'Diagnóstico técnico realizado'
+        WHEN n BETWEEN 865 AND 930 THEN 'Identificada necessidade de serviço adicional'
+        ELSE NULL
+    END,
+
+    DATE_ADD(
+        DATE(
+            DATE_ADD(
+                '2026-08-03',
+                INTERVAL (
+                    FLOOR((n - 1) * 65 / 990)
+                    + FLOOR(FLOOR((n - 1) * 65 / 990) / 5) * 2
+                ) DAY
+            )
+        ),
+        INTERVAL 90 DAY
+    ),
+
+    DATE_ADD(
+        DATE(
+            DATE_ADD(
+                '2026-08-03',
+                INTERVAL (
+                    FLOOR((n - 1) * 65 / 990)
+                    + FLOOR(FLOOR((n - 1) * 65 / 990) / 5) * 2
+                ) DAY
+            )
+        ),
+        INTERVAL 10 DAY
+    ),
+
+    CASE
+        WHEN n <= 594 AND n NOT IN (100, 200, 300) THEN
+            CASE MOD(n, 3)
+                WHEN 0 THEN 'Pix'
+                WHEN 1 THEN 'Dinheiro'
+                ELSE 'Cartão'
+            END
+        ELSE NULL
+    END,
+
+    0.00,
+
+    MOD(n - 1, 350) + 1
+
+FROM tmp_numeros
+WHERE n <= 990;
 
 INSERT INTO item_os_servico
 (quantidade, preco_unitario, sub_total, numero_os, id_servico)
-VALUES
-(2, 75.00, 150.00, 1, 1),
-(1, 130.00, 130.00, 2, 2),
-(1, 90.00, 90.00, 2, 3),
-(1, 90.00, 90.00, 3, 3),
-(2, 150.00, 300.00, 4, 4),
-(1, 120.00, 120.00, 5, 5);
+
+SELECT
+    1 + MOD(n, 2),
+
+    ROUND(
+        s.preco_padrao * (0.90 + MOD(n, 5) * 0.05),
+        2
+    ),
+
+    ROUND(
+        (1 + MOD(n, 2)) *
+        s.preco_padrao * (0.90 + MOD(n, 5) * 0.05),
+        2
+    ),
+
+    CASE
+        WHEN n <= 990 THEN n
+        ELSE n - 990
+    END,
+
+    s.id_servico
+
+FROM tmp_numeros t
+
+INNER JOIN servico s
+    ON s.id_servico = MOD(t.n - 1, 12) + 1
+
+WHERE t.n <= 1300;
+
+UPDATE ordem_servico os
+
+INNER JOIN (
+    SELECT
+        numero_os,
+        SUM(sub_total) AS total_calculado
+    FROM item_os_servico
+    GROUP BY numero_os
+) itens
+    ON os.numero_os = itens.numero_os
+
+SET os.preco_total = itens.total_calculado;
+
+DROP TEMPORARY TABLE IF EXISTS tmp_numeros;
+
+-------------------------------------------------------------------------------------------
 
 -- SELECT
+
+-- Ordens por status
+
+SELECT status_os, COUNT(*) AS quantidade
+FROM ordem_servico
+GROUP BY status_os;
+
+-- Clientes sem ordens de serviço
+
+SELECT c.id_cliente, c.nome
+FROM cliente c
+LEFT JOIN veiculo v ON c.id_cliente = v.id_cliente
+LEFT JOIN ordem_servico os ON v.id_veiculo = os.id_veiculo
+WHERE os.numero_os IS NULL;
+
+-- Peças abaixo do estoque mínimo
+
+SELECT descricao_peca, quantidade_estoque, estoque_minimo
+FROM peca
+WHERE quantidade_estoque < estoque_minimo;
+
+-- Diferentes formas de pagamento
+
+SELECT forma_pagamento, COUNT(*) AS quantidade
+FROM ordem_servico
+WHERE status_os = 'Concluída'
+GROUP BY forma_pagamento;
+
+-- Ordens por mês
+
+SELECT
+    DATE_FORMAT(data_entrada, '%Y-%m') AS periodo,
+    COUNT(*) AS quantidade
+FROM ordem_servico
+GROUP BY DATE_FORMAT(data_entrada, '%Y-%m')
+ORDER BY periodo;
+
 
 -- CONSULTA 01: CLIENTES E SEUS VEÍCULOS
 
@@ -192,26 +417,65 @@ INNER JOIN ordem_servico os
 INNER JOIN servico s
     ON ios.id_servico = s.id_servico;
 
--- UPDATE
-
--- ATUALIZAÇÃO DA QUANTIDADE DE ESTOQUE DE UMA PEÇA
-	
-UPDATE peca
-SET quantidade_estoque = 10
-WHERE codigo_referencia = 'PEC001';
-
--- ATUALIZAÇÃO DO STATUS DE UMA ORDEM DE SERVIÇO
+-- UPDATE - Objetivo: alterar o status de uma OS existente
 
 UPDATE ordem_servico
-SET status_os = 'Concluída'
-WHERE numero_os = 3;
+SET status_os = 'Em Manutenção'
+WHERE numero_os = (
+    SELECT numero_os
+    FROM (
+        SELECT os.numero_os
+        FROM ordem_servico os
+        INNER JOIN veiculo v
+            ON os.id_veiculo = v.id_veiculo
+        INNER JOIN cliente c
+            ON v.id_cliente = c.id_cliente
+        WHERE os.status_os = 'Aguardando Aprovação'
+        ORDER BY os.numero_os
+        LIMIT 1
+    ) AS consulta
+);
 
--- DELETE
+-- Conferir alteração
 
--- EXCLUSÃO DO CLIENTE DE TESTE
+SELECT
+    c.nome,
+    v.placa,
+    os.numero_os,
+    os.status_os
+FROM ordem_servico os
+INNER JOIN veiculo v
+    ON os.id_veiculo = v.id_veiculo
+INNER JOIN cliente c
+    ON v.id_cliente = c.id_cliente
+WHERE os.status_os = 'Em Manutenção'
+ORDER BY os.numero_os;
 
-DELETE FROM cliente
-WHERE cpf = '56789012345';
+-- DELETE - Objetivo: remover um serviço vinculado a uma ordem de serviço
+
+DELETE FROM item_os_servico
+WHERE id_item_servico = (
+    SELECT id_item_servico
+    FROM (
+        SELECT ios.id_item_servico
+        FROM item_os_servico ios
+        INNER JOIN ordem_servico os
+            ON ios.numero_os = os.numero_os
+        INNER JOIN veiculo v
+            ON os.id_veiculo = v.id_veiculo
+        INNER JOIN cliente c
+            ON v.id_cliente = c.id_cliente
+        ORDER BY ios.id_item_servico DESC
+        LIMIT 1
+    ) AS consulta
+);
+
+-- Conferir exclusão
+
+SELECT *
+FROM item_os_servico
+ORDER BY id_item_servico DESC
+LIMIT 10;
 
 -- Consultas gerenciais
 
