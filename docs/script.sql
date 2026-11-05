@@ -1,4 +1,3 @@
-**SGBD:** MySQL
 
 -- Script
   
@@ -68,8 +67,7 @@ create table item_os_servico (
 			references servico (id_servico)
 );
 
-
-## 4\. Massa de Dados e INCERT INTO
+-- Massa de Dados e INCERT INTO
 
 -- CLIENTES
 
@@ -152,7 +150,7 @@ VALUES
 (2, 150.00, 300.00, 4, 4),
 (1, 120.00, 120.00, 5, 5);
 
---SELECT
+-- SELECT
 
 -- CONSULTA 01: CLIENTES E SEUS VEÍCULOS
 
@@ -194,7 +192,7 @@ INNER JOIN ordem_servico os
 INNER JOIN servico s
     ON ios.id_servico = s.id_servico;
 
---UPDATE
+-- UPDATE
 
 -- ATUALIZAÇÃO DA QUANTIDADE DE ESTOQUE DE UMA PEÇA
 	
@@ -208,17 +206,17 @@ UPDATE ordem_servico
 SET status_os = 'Concluída'
 WHERE numero_os = 3;
 
---DELETE
+-- DELETE
 
 -- EXCLUSÃO DO CLIENTE DE TESTE
 
 DELETE FROM cliente
 WHERE cpf = '56789012345';
 
---Consultas gerenciais
+-- Consultas gerenciais
 
---G01 — Qual foi o faturamento da oficina por mês?
---Atende: P1 (acompanhamento financeiro e análise do faturamento mensal)
+-- G01 — Qual foi o faturamento da oficina por mês?
+-- Atende: P1 (acompanhamento financeiro e análise do faturamento mensal)
 
 SELECT
     periodo,
@@ -233,8 +231,8 @@ FROM (
 GROUP BY periodo
 ORDER BY periodo;
 
---G02 — Quantas ordens de serviço existem em cada situação?
---Atende: P2 (acompanhamento da demanda e controle das etapas de atendimento)
+-- G02 — Quantas ordens de serviço existem em cada situação?
+-- Atende: P2 (acompanhamento da demanda e controle das etapas de atendimento)
 
 SELECT
     status_os,
@@ -242,8 +240,8 @@ SELECT
 FROM ordem_servico
 GROUP BY status_os;
 
---G03 — Quais são os serviços mais realizados pela oficina?
---Atende: identificação dos serviços com maior demanda
+-- G03 — Quais são os serviços mais realizados pela oficina?
+-- Atende: identificação dos serviços com maior demanda
 
 SELECT
     s.nome_servico,
@@ -254,8 +252,8 @@ INNER JOIN item_os_servico ios
 GROUP BY s.id_servico, s.nome_servico
 ORDER BY total_realizado DESC;
 
---G04 — Quais peças estão com estoque abaixo do mínimo?
---Atende: P3 (controle de estoque e identificação da necessidade de reposição)
+-- G04 — Quais peças estão com estoque abaixo do mínimo?
+-- Atende: P3 (controle de estoque e identificação da necessidade de reposição)
 
 SELECT
     descricao_peca,
@@ -264,8 +262,8 @@ SELECT
 FROM peca
 WHERE quantidade_estoque <= estoque_minimo;
 
---G05 — Qual é o valor total dos serviços registrados por cliente?
---Atende: P4 (acompanhamento do volume financeiro de serviços por cliente)
+-- G05 — Qual é o valor total dos serviços registrados por cliente?
+-- Atende: P4 (acompanhamento do volume financeiro de serviços por cliente)
 
 SELECT
     c.nome AS cliente,
@@ -280,10 +278,10 @@ INNER JOIN item_os_servico ios
 GROUP BY c.id_cliente, c.nome
 ORDER BY total_servicos DESC;
 
---Consultas de auditoria
+-- Consultas de auditoria
 
---A01 — Existem ordens de serviço sem veículo associado?
---Atende: RN03 — Vinculação obrigatória. Verifica se todas as ordens de serviço possuem um veículo cadastrado.
+-- A01 — Existem ordens de serviço sem veículo associado?
+-- Atende: RN03 — Vinculação obrigatória. Verifica se todas as ordens de serviço possuem um veículo cadastrado.
 
 SELECT
     os.numero_os,
@@ -293,8 +291,8 @@ LEFT JOIN veiculo v
     ON os.id_veiculo = v.id_veiculo
 WHERE v.id_veiculo IS NULL;
 
---A02 — Existem veículos sem cliente responsável?
---Atende: RN03 — Vinculação obrigatória. Verifica se todos os veículos possuem um cliente responsável cadastrado.
+-- A02 — Existem veículos sem cliente responsável?
+-- Atende: RN03 — Vinculação obrigatória. Verifica se todos os veículos possuem um cliente responsável cadastrado.
 
 SELECT
     v.id_veiculo,
@@ -306,8 +304,8 @@ LEFT JOIN cliente c
     ON v.id_cliente = c.id_cliente
 WHERE c.id_cliente IS NULL;
 
---A03 — Quais ordens de serviço estão em manutenção e precisam de validação da aprovação do cliente?
---Atende: RN01 — Execução mediante aprovação. Permite identificar as ordens em manutenção para conferência da autorização do orçamento.
+-- A03 — Quais ordens de serviço estão em manutenção e precisam de validação da aprovação do cliente?
+-- Atende: RN01 — Execução mediante aprovação. Permite identificar as ordens em manutenção para conferência da autorização do orçamento.
 
 SELECT
     numero_os,
@@ -318,8 +316,8 @@ SELECT
 FROM ordem_servico
 WHERE LOWER(status_os) = LOWER('Em Manutenção');
 
---A04 — Quais ordens de serviço estão aguardando nova aprovação?
---Atende: RN05 — Alteração de escopo do serviço. Permite acompanhar as ordens que aguardam autorização do cliente para serviços ou peças adicionais.
+-- A04 — Quais ordens de serviço estão aguardando nova aprovação?
+-- Atende: RN05 — Alteração de escopo do serviço. Permite acompanhar as ordens que aguardam autorização do cliente para serviços ou peças adicionais.
 
 SELECT
     numero_os,
@@ -331,8 +329,8 @@ SELECT
 FROM ordem_servico
 WHERE LOWER(status_os) = LOWER('Aguardando Nova Aprovação');
 
---A05 — Existem ordens de serviço encerradas sem forma de pagamento registrada?
---Atende parcialmente: RN04 — Liberação de veículo pós quitação. Identifica ordens concluídas sem informação sobre a forma de pagamento.
+-- A05 — Existem ordens de serviço encerradas sem forma de pagamento registrada?
+-- Atende parcialmente: RN04 — Liberação de veículo pós quitação. Identifica ordens concluídas sem informação sobre a forma de pagamento.
 
 SELECT
     numero_os,
