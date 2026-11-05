@@ -241,28 +241,16 @@ Emissão de nota fiscal	Pagamento	Ausente: a oficina não emite nota fiscal, poi
 
 Software utilizado: brModelo 3.0 — elaboração do diagrama do Modelo Lógico Relacional.
 
-![Exemplo de modelo lógico na notação do brModelo](Exemplo_Logico.png)
-
 | Elemento | Como aparece | No exemplo |
 | :---- | :---- | :---- |
-| **Tabela** | retângulo com o nome da tabela no topo e uma linha por coluna | `Entity 1`, `Entity 5` |
-| **Coluna** | nome da coluna, à esquerda, com o tipo de dado à direita | `Attribute 30` — `INT` |
-| **Chave primária** | marca `PK` ao lado do tipo | `Chave 1`, em `Entity 1`; `Chave 50` \+ `Chave 51`, em `Entity 5` (chave primária composta) |
-| **Chave estrangeira** | marca `FK` ao lado do tipo | `Chave 3`, em `Entity 4` |
-| **Coluna que é chave primária e estrangeira** | marcas `PK, FK` | `Chave 1`, em `Entity 2` |
-| **Ligação entre tabelas** | linha entre a tabela da FK e a tabela referenciada, com a cardinalidade `(mín, máx)` em cada ponta | `Entity 3` — `Entity 4`: `(1, 1)` e `(0, n)` |
+| **Tabela** | retângulo com o nome da tabela no topo e uma linha por coluna | cliente, veiculo, ordem_servico, peca, servico e item_os_servico |
+| **Coluna** | nome da coluna, à esquerda, com o tipo de dado à direita | ID_Cliente — INT, Nome — VARCHAR, CPF — CHAR, Telefone — VARCHAR, Endereço — VARCHAR, Logradouro — VARCHAR e Bairro — VARCHAR, em cliente; ID_Veiculo — INT, Ano — INT, Marca — VARCHAR, Modelo — VARCHAR, Placa — VARCHAR, KM_atual — INT, ID_Cliente — INT e Cor — VARCHAR, em veiculo; Numero_OS — INT, Data_entrada — DATETIME, Data_prevista — DATETIME, Status_OS — VARCHAR, Defeito_relatado — VARCHAR, Diagnostico_Tecnico — VARCHAR, Prazo_garantia — DATE, Validade_orcamento — DATE, Forma_pagamento — VARCHAR, Preco_total — FLOAT e ID_Veiculo — INT, em ordem_servico; ID_Peca — INT, Preco_Custo — FLOAT, Preco_Venda — FLOAT, Estoque_Minimo — INT, Quantidade_Estoque — INT, Codigo_Referencia — VARCHAR e Descricao_Peca — VARCHAR, em peca; ID_Servico — INT, Nome_Servico — VARCHAR, Preco_Padrao — FLOAT e Descricao_Servico — VARCHAR, em servico; ID_Item_Servico — INT, Quantidade — INT, Preco_Unitario — FLOAT, Sub_Total — FLOAT, Numero_OS — INT e ID_Servico — INT, em item_os_servico. |
+| **Chave primária** | marca `PK` ao lado do tipo | ID_Cliente — PK INT, em cliente; ID_Veiculo — PK INT, em veiculo; Numero_OS — PK INT, em ordem_servico; ID_Peca — PK INT, em peca; ID_Servico — PK INT, em servico; ID_Item_Servico — PK INT, em item_os_servico|
+| **Chave estrangeira** | marca `FK` ao lado do tipo | ID_Cliente — FK INT, em veiculo; ID_Veiculo — FK INT, em ordem_servico; Numero_OS — FK INT, em item_os_servico; ID_Servico — FK INT, em item_os_servico |
+| **Coluna que é chave primária e estrangeira** | 	Não existe no modelo atual |
+| **Ligação entre tabelas** | linha entre a tabela da FK e a tabela referenciada, com a cardinalidade `(mín, máx)` em cada ponta | cliente — veiculo; veiculo — ordem_servico; ordem_servico — item_os_servico; servico — item_os_servico |
 
 &nbsp;
-
-Deve apresentar claramente:
-
-- Tabelas  
-- Atributos (colunas), com seus tipos de dados  
-- Chaves primárias  
-- Chaves estrangeiras  
-- Cardinalidades já convertidas
-
-As **demais restrições de integridade** — obrigatoriedade (`NOT NULL`), unicidade (`UNIQUE`), valores permitidos (`CHECK`), valores padrão (`DEFAULT`) — não aparecem no diagrama do brModelo e devem ser documentadas no **dicionário de dados** (seção 5\) e implementadas no **script SQL** (seção 3).
 
 ---
 
