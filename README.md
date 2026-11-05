@@ -63,7 +63,7 @@
 
 **Requisitos (todos os grupos)**
 
--**Requisitos Funcionais:**
+- **Requisitos Funcionais:**
 
 | Código | Requisito                                                                                                                                                                                       |
 | :----  | :----                                                                                                                                                                                           |
@@ -79,7 +79,7 @@
 | RF10   | Alertar quando peças de alto giro atingirem o estoque mínimo.                                                                                                                                   |
 | RF11   | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago).                                                               |
 
--**Requisitos Não Funcionais:**
+- **Requisitos Não Funcionais:**
 
 | Código | Requisito                                                                                       |
 | :----  | :----                                                                                           |
@@ -91,10 +91,9 @@
 | RNF06  | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul).           |
 | RN07   | Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência.|
 
+Boa parte do levantamento de requisitos utilizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF07	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.
 
-- **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utilizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF07	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.
-
-- **Justifique os requisitos prováveis não incluídos:** O requisito funcional RF12	Registrar o checklist de entrada da moto (avarias visíveis, itens deixados, nível de combustível, quilometragem), de acordo com mecanico esse processo não é verificado, apenas a análise e diagnostico, de acordo com as informações do cliente.
+O requisito funcional RF12	Registrar o checklist de entrada da moto (avarias visíveis, itens deixados, nível de combustível, quilometragem), de acordo com mecanico esse processo não é verificado, apenas a análise e diagnostico, de acordo com as informações do cliente.
 
 **Regras de negócio (todos os grupos)**
 
