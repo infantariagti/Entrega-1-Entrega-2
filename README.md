@@ -58,6 +58,7 @@
 **principais processos mapeados** na organização — A empresa não trabalha com sistema de cadastro, o controle de estoque é anotado tudo via WhatsApp. A venda das peças é incluso ao serviço prestado. A emissao de entrega e solicitações é manual, onde a gerente busca sozinha sites, contatos e endereços do comercio. Eles integram a venda de produtos ao serviço prestado da moto, sem distribuições. Nao ha organizações, eventos ou multirões.
 
 - **Levante os processos típicos do tipo de organização.** Triagem e inspeção inicial do veículo, diagnóstico técnico do problema, cotação de peças e aprovação do orçamento com o cliente, execução de serviços rápidos de rotina e reparos complexos, controle e organização física do pátio da oficina, compra de peças sob demanda com fornecedores parceiros, e o teste final de qualidade seguido da entrega do veículo.
+- 
 - **Inclua os processos que existem na organização** Recebe mensagens do cliente via WhatsApp: Cliente entra em contanto com a oficina pedindo informações a respeito dos procedimentos a serem realizados com a motocicleta
 Agendamento via WhatsApp: O processo de agendamento é feito por WhatsApp a partir de mensagens (registo principal de agendamento da empresa em questão)
 Recebimento da motocicleta: Cliente leva a motocicleta até a oficina como conversado no WhatsApp
@@ -67,6 +68,7 @@ Aprovação do orçamento: Autorização do cliente para execução dos serviço
 Combina quando vai ser retirado: Realiza a conversa via WhatsApp para informar ao cliente uma data e horário prevista para finalização do serviço
 Execução do serviço: Realização da manutenção ou reparo pelos mecânicos.
 Finalização e entrega: Conferência do serviço, pagamento e devolução da motocicleta ao cliente.
+
 - **Justifique os processos prováveis não incluídos:** raramente a casos de desistência do cliente devido a alta demanda de motos ja agendadas.
 
 **Requisitos (todos os grupos)**
@@ -277,11 +279,6 @@ As **demais restrições de integridade** — obrigatoriedade (`NOT NULL`), unic
 ## 4\. Massa de Dados
 
 (Massa de dados incluída junto ao script - https://github.com/infantariagti/Entrega-1-Entrega-2/blob/Entrega-2-Modelo-Lógico,-Implementação-SQL-e-Apresentação-Final/docs/script.sql)
-
-- Volume de registros **coerente com a realidade da organização** (nada de 3 linhas de exemplo — mas também nada artificialmente inflado sem sentido).  
-- **Explique como o volume real da organização** — os números informados em *Contexto e porte* (seção 1.1), como clientes ativos, pedidos por mês, atendimentos por semana, itens no estoque — **justifica a quantidade de registros de cada tabela** da massa de dados.  
-- **Variedade e quantidade coerentes com a organização, para que os testes sejam possíveis:** os dados devem cobrir as situações reais — não só o caso comum, mas também pedidos cancelados, clientes sem compras, produtos abaixo do estoque mínimo, pagamentos em formas diferentes, registros em períodos diferentes. Sem essa variedade, as consultas gerenciais e de auditoria (seção 3\) não têm o que mostrar: uma consulta de produtos abaixo do estoque mínimo que retorna vazio não demonstra nada.  
-- **Documente o uso de LLMs** para gerar essa massa de dados na seção 6 (**Uso de Inteligência Artificial**), incluindo ferramentas, prompts e ajustes feitos manualmente.
 
 ---
 
