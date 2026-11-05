@@ -215,4 +215,20 @@ WHERE numero_os = 3;
 DELETE FROM cliente
 WHERE cpf = '56789012345';
 
+--Consultas gerenciais
+
+--G01 — Qual foi o faturamento da oficina por mês?
+--Atende: acompanhamento financeiro e análise do faturamento mensal
+
+--G02 — Quantas ordens de serviço existem em cada situação?
+--Atende: acompanhamento da demanda e controle das etapas de atendimento.
+
+--G03 — Quais são os serviços mais realizados pela oficina?
+--Atende: identificação dos serviços com maior demanda.
+
+--G04 — Quais peças estão com estoque abaixo do mínimo?
+--Atende: controle de estoque e identificação da necessidade de reposição.
+
+--G05 — Qual é o valor total dos serviços registrados por cliente?
+--Atende: acompanhamento do volume financeiro de serviços por cliente.
 
