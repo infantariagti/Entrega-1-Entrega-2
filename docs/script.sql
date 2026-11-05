@@ -195,3 +195,24 @@ INNER JOIN servico s
     ON ios.id_servico = s.id_servico;
 
 **UPDATE**
+
+-- ATUALIZAÇÃO DA QUANTIDADE DE ESTOQUE DE UMA PEÇA
+	
+UPDATE peca
+SET quantidade_estoque = 10
+WHERE codigo_referencia = 'PEC001';
+
+-- ATUALIZAÇÃO DO STATUS DE UMA ORDEM DE SERVIÇO
+
+UPDATE ordem_servico
+SET status_os = 'Concluída'
+WHERE numero_os = 3;
+
+**DELETE**
+
+-- EXCLUSÃO DO CLIENTE DE TESTE
+
+DELETE FROM cliente
+WHERE cpf = '56789012345';
+
+
