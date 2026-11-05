@@ -282,4 +282,66 @@ ORDER BY total_servicos DESC;
 
 --Consultas de auditoria
 
+--A01 — Existem ordens de serviço sem veículo associado?
+--Atende: RN03 — Vinculação obrigatória. Verifica se todas as ordens de serviço possuem um veículo cadastrado.
+
+SELECT
+    os.numero_os,
+    os.id_veiculo
+FROM ordem_servico os
+LEFT JOIN veiculo v
+    ON os.id_veiculo = v.id_veiculo
+WHERE v.id_veiculo IS NULL;
+
+--A02 — Existem veículos sem cliente responsável?
+--Atende: RN03 — Vinculação obrigatória. Verifica se todos os veículos possuem um cliente responsável cadastrado.
+
+SELECT
+    v.id_veiculo,
+    v.modelo,
+    v.placa,
+    v.id_cliente
+FROM veiculo v
+LEFT JOIN cliente c
+    ON v.id_cliente = c.id_cliente
+WHERE c.id_cliente IS NULL;
+
+--A03 — Quais ordens de serviço estão em manutenção e precisam de validação da aprovação do cliente?
+--Atende: RN01 — Execução mediante aprovação. Permite identificar as ordens em manutenção para conferência da autorização do orçamento.
+
+SELECT
+    numero_os,
+    data_entrada,
+    status_os,
+    validade_orcamento,
+    preco_total
+FROM ordem_servico
+WHERE LOWER(status_os) = LOWER('Em Manutenção');
+
+--A04 — Quais ordens de serviço estão aguardando nova aprovação?
+--Atende: RN05 — Alteração de escopo do serviço. Permite acompanhar as ordens que aguardam autorização do cliente para serviços ou peças adicionais.
+
+SELECT
+    numero_os,
+    data_entrada,
+    status_os,
+    defeito_relatado,
+    diagnostico_tecnico,
+    preco_total
+FROM ordem_servico
+WHERE LOWER(status_os) = LOWER('Aguardando Nova Aprovação');
+
+--A05 — Existem ordens de serviço encerradas sem forma de pagamento registrada?
+--Atende parcialmente: RN04 — Liberação de veículo pós quitação. Identifica ordens concluídas sem informação sobre a forma de pagamento.
+
+SELECT
+    numero_os,
+    status_os,
+    preco_total,
+    forma_pagamento
+FROM ordem_servico
+WHERE LOWER(status_os) = LOWER('Concluída')
+AND (
+    forma_pagamento IS NULL
+    OR TRIM(forma_pagamento) = '');
 
