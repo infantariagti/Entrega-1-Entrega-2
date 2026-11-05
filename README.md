@@ -105,10 +105,37 @@ O requisito funcional RF12	Registrar o checklist de entrada da moto (avarias vis
 
 **Regras de negócio (todos os grupos)**
 
-*Liste as regras de negócio vigentes, cada uma com um código (`RN01`, `RN02`…) — mantenha os códigos da Entrega 1 quando já existirem. Esses códigos são citados nas justificativas das restrições (seção 1.5) e nas consultas de auditoria do script SQL (seção 3).*
+## 4. Regras de Negócio
 
-- **Levante as regras típicas do tipo de organização.** Assim como nos processos e nos requisitos, é recomendável usar pesquisas e ferramentas de IA para descobrir quais regras são comuns em organizações semelhantes e conferir se elas valem na organização escolhida — o que pode exigir confirmação com o responsável. Considere tanto as **regras operacionais** (ex.: pedido só é entregue se estiver registrado; cancelamento fica no histórico, não é apagado) quanto as **restrições legais e organizacionais** (ex.: LGPD, emissão de nota fiscal, normas sanitárias, idade mínima, acesso por cargo). Registre esse uso de IA na seção 6\.  
-- **Justifique as regras prováveis não incluídas:** se uma regra comum nesse tipo de organização ficou de fora, explique por quê (ex.: a organização não realiza o processo correspondente, ou a regra não se aplica ao porte ou à natureza dela).
+- **Regras Operacionais**
+  
+RN01 - Execução mediante aprovação: Uma Ordem de Serviço (OS) só pode ter seu status alterado para "Em Manutenção" após a autorização e validação explícita do cliente sobre o orçamento gerado.
+
+RN02 - Disponibilidade e baixa de estoque: Uma peça só pode ser incluída na OS se houver saldo disponível em estoque. A baixa física/sistêmica ocorre automaticamente no momento do encerramento da OS.
+
+RN03 - Vinculação obrigatória: Toda OS deve estar obrigatoriamente associada a um veículo cadastrado, e todo veículo precisa ter um cliente responsável vinculado no sistema.
+
+RN04 - Liberação de veículo pós quitação: O encerramento definitivo da OS e a liberação do veículo só podem ser realizados após o registro da quitação do valor total (Pix, dinheiro ou cartão).
+
+RN05 - Alteração de escopo do serviço: Se o mecânico identificar a necessidade de peças ou serviços adicionais durante o conserto, a OS deve entrar em status "Aguardando Nova Aprovação" até a autorização do cliente.
+
+- **Restrições Organizacionais**
+  
+RO01 - Operação enxuta e perfis de acesso: O sistema deve oferecer telas simplificadas e separadas por perfil (a esposa no atendimento/financeiro e o mecânico no pátio), garantindo rapidez para não travar a rotina de apenas duas pessoas.
+
+RO02 - Conformidade com CDC (Garantia e Validade): Por exigência legal do Código de Defesa do Consumidor, os orçamentos emitidos pelo sistema devem exibir validade padrão de 10 dias e as OS concluídas devem registrar automaticamente prazo de garantia de 90 dias.
+
+RO03 - Política de quitação imediata: Por diretriz da administração, a oficina não trabalha com pagamentos faturados via boleto próprio ou promissórias ("fiado"); o sistema deve restringir o fechamento a meios de pagamento de liquidação imediata ou cartão.
+
+RO04 - Adequação à LGPD: O armazenamento dos dados cadastrais (CPF, telefone, endereço) deve servir estritamente para emissão de comprovantes e comunicação sobre o status da moto, garantindo a privacidade do cliente.
+
+Agendamento: capacidade diária / não comparecimento	Agendamento	Ausente: o agendamento não se limita à entrega da moto, e não há regra formal de não comparecimento relatada. A capacidade do local é de 30 motos, mas não há limite diário de agendamentos formalizado.
+
+Moto não retirada no prazo (estadia)	Entrega	Ausente: o prazo de reparo é de até 2 dias, e problemas complexos ficam sem prazo definido. Sem prazo fixo, não há como estabelecer regra de estadia ou cobrança por permanência.
+
+Compra de peças: fornecedor e conferência	Compras	Ausente: a compra é feita direto com o distribuidor, com a oficina comparecendo à loja ou ao local. Não há prazo de entrega nem fornecedor formal a controlar, logo não há regra de conferência de recebimento.
+
+Emissão de nota fiscal	Pagamento	Ausente: a oficina não emite nota fiscal, pois considera o processo muito burocrático. A regra não se aplica à operação atual.
 
 **Notação do DER conceitual (todos os grupos — Caso A e Caso B)**
 
