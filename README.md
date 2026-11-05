@@ -430,6 +430,19 @@ Usabilidade e saída: tela responsiva para celular, formatos brasileiros (dd/mm/
 
 **Uso de IA observado e não declarado será penalizado.**
 
+Ferramenta utilizada: ChatGPT (GPT-6).
+
+1. Adaptação da tabela do DER
+
+Prompt: “Preciso que você arrume essa tabela conforme essa imagem do DER utilizando os requisitos do README.”
+
+Resposta recebida: A IA adaptou a tabela conforme as entidades, relacionamentos, atributos e cardinalidades do projeto.
+
+2. Formatação em Markdown
+
+Prompt: “Me dê em Markdown para colocar direto no GitHub no README.”
+
+Resposta recebida: A IA converteu a tabela para Markdown, facilitando sua inclusão no GitHub.
 
 
 
