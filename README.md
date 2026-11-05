@@ -54,51 +54,33 @@
 
 **Requisitos (todos os grupos)**
 
-*Apresente os requisitos do sistema, atualizados com base na correção da Entrega 1 (ou elaborados agora, para quem trocou de organização):*
+**Requisitos Funcionais:**
 
-- **Requisitos Funcionais:**
-| Código | Requisito |
-| :---- | :---- |
+| Código | Requisito                                                                                                                                                                                       |
+| :----  | :----                                                                                                                                                                                           |
+| RF01   | Cadastrar cliente com nome, telefone/WhatsApp, CPF e endereço (logradouro, bairro).                                                                                                             |
+| RF02   | Cadastrar moto vinculada a um cliente, com placa, marca, modelo, ano, cor e quilometragem.                                                                                                      |
+| RF03   | Abrir e atualizar OS com data de entrada, defeito relatado, diagnóstico, status (Aguardando Aprovação, Em Manutenção, Pronta, Entregue) e previsão de entrega.                                  |
+| RF04   | Registrar o recebimento de peças (peça, quantidade, valor de custo), somando ao saldo do estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS. |
+| RF05   | Cadastrar peças (nome, código/referência, custo, venda, quantidade em estoque, estoque mínimo) e baixar o saldo ao fechar a OS.                                                                 |
+| RF06   | Lançar serviços (mão de obra) na OS, com quantidade e preço praticado.                                                                                                                          |
+| RF07   | Calcular o total do orçamento (peças + serviços) e permitir visualizar/imprimir para validação do cliente.                                                                                      |
+| RF08   | Registrar pagamento (Pix, dinheiro, cartão de débito ou crédito) e marcar a OS como paga.                                                                                                       |
+| RF09   | Consultar o histórico de OS por placa ou por cliente.                                                                                                                                           |
+| RF10   | Alertar quando peças de alto giro atingirem o estoque mínimo.                                                                                                                                   |
+| RF11   | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago).                                                               |
 
-| RF01 | Cadastrar cliente com nome, telefone/WhatsApp, CPF e endereço (logradouro, bairro). |
+**Requisitos Não Funcionais:**
 
-| RF02 | Cadastrar moto vinculada a um cliente, com placa, marca, modelo, ano, cor e quilometragem. |
-
-| RF03 | Abrir e atualizar OS com data de entrada, defeito relatado, diagnóstico, status (Aguardando Aprovação, Em Manutenção, Pronta, Entregue) e previsão de entrega. |
-
-| RF04 | Registrar o recebimento de peças (peça, quantidade, valor de custo), somando ao saldo do estoque, e registrar automaticamente a garantia de 90 dias a partir da data de saída ao encerrar a OS. |
-
-| RF05 | Cadastrar peças (nome, código/referência, custo, venda, quantidade em estoque, estoque mínimo) e baixar o saldo ao fechar a OS. |
-
-| RF06 | Lançar serviços (mão de obra) na OS, com quantidade e preço praticado. |
-
-| RF07 | Calcular o total do orçamento (peças + serviços) e permitir visualizar/imprimir para validação do cliente. |
-
-| RF08 | Registrar pagamento (Pix, dinheiro, cartão de débito ou crédito) e marcar a OS como paga. |
-
-| RF09 | Consultar o histórico de OS por placa ou por cliente. |
-
-| RF10 | Alertar quando peças de alto giro atingirem o estoque mínimo. |
-
-| RF11 | Contas a pagar: registrar compras de peças e insumos com descrição, valor, data da compra, vencimento e situação (Pendente/Pago). |
-
-- **Requisitos Não Funcionais:**
-| Código | Requisito |
-| :---- | :---- |
-
-| RNF01 | Usabilidade: interface simples; cadastro de atendimento em menos de 2 minutos. |
-
-| RNF02 | Desempenho: busca por cliente ou placa em menos de 2 segundos. |
-
-| RNF03 | Integridade: não excluir clientes ou motos com OS ativa ou histórico. |
-
-| RNF04 | Backup periódico (local ou nuvem). |
-
-| RNF05 | Compatibilidade: rodar em computador básico, via navegador. |
-
-| RNF06 | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul). |
-
-|RN07 | Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência.|
+| Código | Requisito                                                                                       |
+| :----  | :----                                                                                           |
+| RNF01  | Usabilidade: interface simples; cadastro de atendimento em menos de 2 minutos.                  |
+| RNF02  | Desempenho: busca por cliente ou placa em menos de 2 segundos.                                  |
+| RNF03  | Integridade: não excluir clientes ou motos com OS ativa ou histórico.                           |
+| RNF04  | Backup periódico (local ou nuvem).                                                              |
+| RNF05  | Compatibilidade: rodar em computador básico, via navegador.                                     |
+| RNF06  | Validação de entrada: máscara de CPF, padrão de telefone e placa (antiga e Mercosul).           |
+| RN07   | Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência.|
 
   
 - **Levante os requisitos típicos do tipo de organização.** Boa parte do levantamento de requisitos utilizando a IA para análise e verificar a possibilidade inclusão de novos requisitos, seria o requisito não funcional RNF07	Recuperação: o backup (RNF04) deve ter teste de restauração periódico e definição de frequência. Porque é feito tudo visualmente sem consulta de estoque, as compras são feitas direto no local.  
