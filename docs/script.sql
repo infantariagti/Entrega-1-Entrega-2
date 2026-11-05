@@ -218,17 +218,68 @@ WHERE cpf = '56789012345';
 --Consultas gerenciais
 
 --G01 — Qual foi o faturamento da oficina por mês?
---Atende: acompanhamento financeiro e análise do faturamento mensal
+--Atende: P1 (acompanhamento financeiro e análise do faturamento mensal)
+
+SELECT
+    periodo,
+    SUM(faturamento) AS faturamento
+FROM (
+    SELECT
+        DATE_FORMAT(data_entrada, '%Y-%m') AS periodo,
+        preco_total AS faturamento
+    FROM ordem_servico
+    WHERE status_os = 'Concluída'
+) AS dados
+GROUP BY periodo
+ORDER BY periodo;
 
 --G02 — Quantas ordens de serviço existem em cada situação?
---Atende: acompanhamento da demanda e controle das etapas de atendimento.
+--Atende: P2 (acompanhamento da demanda e controle das etapas de atendimento)
+
+SELECT
+    status_os,
+    COUNT(*) AS quantidade_os
+FROM ordem_servico
+GROUP BY status_os;
 
 --G03 — Quais são os serviços mais realizados pela oficina?
---Atende: identificação dos serviços com maior demanda.
+--Atende: identificação dos serviços com maior demanda
+
+SELECT
+    s.nome_servico,
+    SUM(ios.quantidade) AS total_realizado
+FROM servico s
+INNER JOIN item_os_servico ios
+    ON s.id_servico = ios.id_servico
+GROUP BY s.id_servico, s.nome_servico
+ORDER BY total_realizado DESC;
 
 --G04 — Quais peças estão com estoque abaixo do mínimo?
---Atende: controle de estoque e identificação da necessidade de reposição.
+--Atende: P3 (controle de estoque e identificação da necessidade de reposição)
+
+SELECT
+    descricao_peca,
+    quantidade_estoque,
+    estoque_minimo
+FROM peca
+WHERE quantidade_estoque <= estoque_minimo;
 
 --G05 — Qual é o valor total dos serviços registrados por cliente?
---Atende: acompanhamento do volume financeiro de serviços por cliente.
+--Atende: P4 (acompanhamento do volume financeiro de serviços por cliente)
+
+SELECT
+    c.nome AS cliente,
+    SUM(ios.sub_total) AS total_servicos
+FROM cliente c
+INNER JOIN veiculo v
+    ON c.id_cliente = v.id_cliente
+INNER JOIN ordem_servico os
+    ON v.id_veiculo = os.id_veiculo
+INNER JOIN item_os_servico ios
+    ON os.numero_os = ios.numero_os
+GROUP BY c.id_cliente, c.nome
+ORDER BY total_servicos DESC;
+
+--Consultas de auditoria
+
 
